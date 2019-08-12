@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:orientation="horizontal"
+        android:background="@color/clr_blue">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/dp18"
+            android:text="SmartVisualInspection"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp15"
+            android:textColor="@color/clr_white"/>
+
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="100">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="List of Scopes"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginLeft="@dimen/dp15"
+                android:textSize="@dimen/dp15"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp05"
+                android:background="#aaaaaa"
+                android:layout_marginTop="@dimen/dp10"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp40"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/txtScopeName"
+                    android:layout_width="0dp"
+                    android:layout_weight="70"
+                    android:layout_height="wrap_content"
+                    android:text="Scope"
+                    android:layout_marginLeft="@dimen/dp20"/>
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="match_parent"
+                    android:background="#aaaaaa"/>
+                <TextView
+                    android:id="@+id/txtScopeStatus"
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    android:layout_marginLeft="@dimen/dp15"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp05"
+                android:background="#aaaaaa"/>
+
+            <ListView
+                android:id="@+id/lstScope"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="100"
+                android:dividerHeight="0dp"
+                android:divider="@null">
+        </ListView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

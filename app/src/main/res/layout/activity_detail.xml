@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:orientation="horizontal"
+        android:background="@color/clr_blue"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/dp24"
+            android:layout_height="@dimen/dp15"
+            android:background="@drawable/right_arrow"
+            android:layout_marginLeft="@dimen/dp15"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/dp18"
+            android:text="Process Details"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp15"
+            android:textColor="@color/clr_white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp15">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical">
+            
+            <ImageView
+                android:layout_width="@dimen/dp35"
+                android:layout_height="@dimen/dp35"
+                android:background="@drawable/scope"/>
+            <TextView
+                android:id="@+id/txtScopeName"
+                android:layout_width="0dp"
+                android:layout_weight="100"
+                android:layout_height="wrap_content"
+                android:text="Scope Name"
+                android:layout_marginLeft="@dimen/dp10"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp35"
+                android:layout_height="@dimen/dp35"
+                android:background="@drawable/kit"/>
+            <TextView
+                android:id="@+id/txtAccessoryName"
+                android:layout_width="0dp"
+                android:layout_weight="100"
+                android:layout_height="wrap_content"
+                android:text="Accessory Name"
+                android:layout_marginLeft="@dimen/dp10"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp35"
+                android:layout_height="@dimen/dp35"
+                android:background="@drawable/kit"/>
+            <TextView
+                android:id="@+id/txtPost"
+                android:layout_width="0dp"
+                android:layout_weight="100"
+                android:layout_height="wrap_content"
+                android:text="Accessory Name"
+                android:layout_marginLeft="@dimen/dp10"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp35"
+                android:layout_height="@dimen/dp35"
+                android:background="@drawable/pump"/>
+            <TextView
+                android:id="@+id/txtPumpStart"
+                android:layout_width="0dp"
+                android:layout_weight="100"
+                android:layout_height="wrap_content"
+                android:text="Accessory Name"
+                android:layout_marginLeft="@dimen/dp10"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp35"
+                android:layout_height="@dimen/dp35"
+                android:background="@drawable/atp"/>
+            <TextView
+                android:id="@+id/txtATP"
+                android:layout_width="0dp"
+                android:layout_weight="100"
+                android:layout_height="wrap_content"
+                android:text="Accessory Name"
+                android:layout_marginLeft="@dimen/dp10"/>
+            <ImageView
+                android:layout_width="@dimen/dp80"
+                android:layout_height="@dimen/dp20"
+                android:background="@drawable/rlu"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp35"
+                android:layout_height="@dimen/dp35"
+                android:background="@drawable/vi"/>
+            <TextView
+                android:id="@+id/txtVisual"
+                android:layout_width="0dp"
+                android:layout_weight="100"
+                android:layout_height="wrap_content"
+                android:text="Accessory Name"
+                android:layout_marginLeft="@dimen/dp10"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp35"
+                android:layout_height="@dimen/dp35"
+                android:background="@drawable/scope_return"/>
+            <TextView
+                android:id="@+id/txtReturn"
+                android:layout_width="0dp"
+                android:layout_weight="100"
+                android:layout_height="wrap_content"
+                android:text="Accessory Name"
+                android:layout_marginLeft="@dimen/dp10"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

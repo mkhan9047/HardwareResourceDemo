@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TrackingApp</string>
+
+    <string name="ble_not_supported">Your phone does not support Bluetooth Low Energy technology. Application will be closed! </string>
+    <string name="bluetooth_not_supported">Your phone does not support Bluetooth technology. Application will be closed! </string>
+    <string name="no_bluetooth_dialog_title_text">Bluetooth is off</string>
+    <string name="no_bluetooth_dialog_text">You need Bluetooth to use this app. Switch on Bluetooth?</string>
+    <string-array name="properties_array">
+        <item>Broadcast</item>
+        <item>Read</item>
+        <item>Write no response</item>
+        <item>Write</item>
+        <item>Notify</item>
+        <item>Indicate</item>
+        <item>Signed write</item>
+        <item>Extended props</item>
+    </string-array>
+</resources>

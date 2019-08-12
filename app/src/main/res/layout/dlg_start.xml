@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start a new procedure"
+        android:layout_margin="@dimen/dp15"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:layout_height="@dimen/dp140"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp8"
+            android:background="@drawable/back_scope">
+            <Spinner
+                android:id="@+id/spScope"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp10">
+            </Spinner>
+            <ImageView
+                android:id="@+id/imgScope"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:layout_height="@dimen/dp140"
+            android:orientation="vertical"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp8"
+            android:background="@drawable/back_scope">
+            <Spinner
+                android:id="@+id/spKit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp10">
+            </Spinner>
+            <ImageView
+                android:id="@+id/imgKit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:background="#00ffffff"
+        android:layout_gravity="end"
+        android:layout_marginRight="@dimen/dp15"/>
+</LinearLayout>
