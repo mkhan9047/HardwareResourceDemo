@@ -38,7 +38,7 @@
             android:screenOrientation="portrait">
         </activity>
 
-
+        <service android:name="com.farooq.smartapp.BluetoothLeService" />
     </application>
 
 </manifest>

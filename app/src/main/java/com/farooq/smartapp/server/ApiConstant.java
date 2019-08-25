@@ -19,6 +19,8 @@ public class ApiConstant {
     //Request headers
     public static final String HEADER_NAME_CONTENT_TYPE = "Content-Type";
     public static final String HEADER_VALUE_CONTENT_TYPE = "application/json";
+    //public static final String URL_SOCKET = "ws://tracking-dev.o7tc.com/hubs/Bluetooth";
+    public static final String URL_SOCKET = "http://tracking-dev.o7tc.com/Hubs/Bluetooth";
     //
 
 }

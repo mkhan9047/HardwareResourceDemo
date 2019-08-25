@@ -8,6 +8,8 @@ import com.androidquery.callback.AjaxCallback;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 
@@ -28,6 +30,7 @@ public class WebServices {
 
     //Api requests
     private static final String RQ_SCOPE_LIST = "/api/ProcessHistory/ActiveRecords";
+    private static final String RQ_START_PROCESS = "/api/ProcessHistory/StartProcess";
 
     /**
      * Add required headers to the request
@@ -106,5 +109,45 @@ public class WebServices {
             e.printStackTrace();
         }
     }
+
+    public void startProcess(Context context, String scopeId, String accessoryId, AjaxCallback<String> callback) {
+        try {
+            String requestUrl = ApiConstant.SERVER + RQ_START_PROCESS;
+
+            //add required headers
+            addHeaders(callback);
+
+            //add params
+            JSONObject data = new JSONObject();
+            data.put("scopeId", scopeId);
+            data.put("accessoryId", accessoryId);
+
+            //make api call
+            makeApiCall(context, requestUrl, data, callback);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendBlutoothEvent(Context context, String macAddress, String value, AjaxCallback<String> callback) {
+        try {
+            String requestUrl = ApiConstant.SERVER + RQ_START_PROCESS;
+
+            //add required headers
+            addHeaders(callback);
+
+            //add params
+            JSONObject data = new JSONObject();
+            data.put("macAddress", macAddress);
+            data.put("value", value);
+
+            String strTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            //make api call
+            makeApiCall(context, requestUrl, data, callback);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

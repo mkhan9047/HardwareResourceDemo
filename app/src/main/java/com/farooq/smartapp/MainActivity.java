@@ -13,6 +13,8 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,24 +28,37 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.farooq.smartapp.datamodel.Device;
 import com.farooq.smartapp.datamodel.Engine;
+import com.farooq.smartapp.dotnetcoresignalrclientjava.HubConnection;
+import com.farooq.smartapp.dotnetcoresignalrclientjava.HubConnectionListener;
+import com.farooq.smartapp.dotnetcoresignalrclientjava.HubEventListener;
+import com.farooq.smartapp.dotnetcoresignalrclientjava.HubMessage;
+import com.farooq.smartapp.dotnetcoresignalrclientjava.WebSocketHubConnectionP2;
 import com.farooq.smartapp.model.RecordObj;
 import com.farooq.smartapp.model.ScopeObj;
+import com.farooq.smartapp.server.ApiConstant;
 import com.farooq.smartapp.server.WebServices;
 import com.farooq.smartapp.utils.DialogUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
+import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.handshake.ServerHandshake;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, HubConnectionListener, HubEventListener {
 
 
     private ScopeListAdapter mAdapter;
@@ -54,7 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private int rowwidth = 0;
     private ArrayList mArrStatus = new ArrayList();
 
-    private ArrayList<String> arrScopes = new ArrayList<>();
+    private ArrayList<ScopeObj> pickedScopes = new ArrayList<>();
     private ArrayAdapter scopeAdapter;
 
 
@@ -67,13 +82,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private String[] permissions = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"};
     private final int PERMISSION_All_REQUEST_CODE = 67;
 
+    private TextView txtScopePrompt;
+    private long lLastEventSendTime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(!Utils.permission_check_only(this, permissions)){
+            ActivityCompat.requestPermissions(MainActivity.this, permissions, PERMISSION_All_REQUEST_CODE);
+        }
+        Engine.getInstance().init(this.getApplicationContext());
         initAdapter();
         initClick();
         loadScopeList();
+
+        connectWebSocket();
+        checkBluetoothAdapter();
     }
 
 
@@ -105,9 +129,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void initClick() {
         findViewById(R.id.btnStart).setOnClickListener(this);
 
-        arrScopes.add("Scope1");
-        arrScopes.add("Scope2");
-        arrScopes.add("Scope3");
     }
     private void loadScopeList() {
         showProgress();
@@ -167,26 +188,58 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         final AlertDialog startDlg = new AlertDialog.Builder(this).create();
         startDlg.setView(startDlgView);
         Spinner spScope = startDlgView.findViewById(R.id.spScope);
-        scopeAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrScopes);
+        spScope.setPrompt("Waiting for Scope");
+        pickedScopes.clear();
+        scopeAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, pickedScopes);
         spScope.setAdapter(scopeAdapter);
+
+        txtScopePrompt = startDlgView.findViewById(R.id.txtScopePrompt);
 
         startDlgView.findViewById(R.id.btnStart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //your business logic
-                startDlg.dismiss();
+                if (pickedScopes.isEmpty()) {
+
+                }
+                else {
+                    startDlg.dismiss();
+                    startProcess();
+                }
+
             }
         });
 
-//        deleteDialogView.findViewById(R.id.no).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                deleteDialog.dismiss();
-//            }
-//        });
-
         startDlg.show();
+        visiblePromptText();
     }
+
+    private void startProcess() {
+
+        showProgress();
+        ScopeObj scopeObj = pickedScopes.get(0);
+        WebServices.getInstance().startProcess(this, scopeObj.getId(), "08d7176c-93db-96e8-17c2-29443d993524",
+                new AjaxCallback<String>() {
+                    public void callback(String url, String json, AjaxStatus status) {
+                        hideProgress();
+                        Log.i("MainActivity", json);
+                        try {
+                            JSONObject jsonObject = new JSONObject(json);
+                            boolean bSucess = jsonObject.getBoolean("success");
+                            if(bSucess){
+                                Toast.makeText(MainActivity.this, "Start Process successful", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                Toast.makeText(MainActivity.this, "Start Process failed", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        catch (Exception e){
+                            Toast.makeText(MainActivity.this, "Start Process failed", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+    }
+
 
     private void checkBluetoothAdapter() {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -261,12 +314,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 int rssi = (int) intent.getIntExtra(BluetoothLeService.RSSI, 0);
                 byte[] scanRecord = intent.getByteArrayExtra(BluetoothLeService.SCAN_RECORD);
 
-//                String serialNumber =  Utils.bytesToHex(scanRecord).substring(56, 68).toString();
+                String serialNumber =  Utils.bytesToHex(scanRecord).substring(56, 68).toString();
+                String value =  Utils.bytesToHex(scanRecord).substring(78, 22).toString();
+
 //                serialNumber = Utils.hexToAscii(serialNumber);
 //                if(checkDeviceExist(serialNumber)){
-                    Engine.getInstance().prepareToAddDevice();
-                    Engine.getInstance().addBluetoothDevice(bluetoothDevice, rssi, scanRecord);
-                    refreshViewOnUiThread();
+//                    Engine.getInstance().prepareToAddDevice();
+//                    Engine.getInstance().addBluetoothDevice(bluetoothDevice, rssi, scanRecord);
+                    //refreshViewOnUiThread();
+                sendBluetoothEvent(serialNumber, value);
 //                }
 
             } else if (intent.getAction().equals(BluetoothLeService.ACTION_STOP_SCAN)) {
@@ -283,6 +339,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     };
 
+    private void sendBluetoothEvent(String macAddress, String value){
+        long lCurTime = System.currentTimeMillis();
+        if (lCurTime > (lLastEventSendTime + 30000)) {
+            WebServices.getInstance().sendBlutoothEvent(this, macAddress, value,
+                    new AjaxCallback<String>() {
+                        public void callback(String url, String json, AjaxStatus status) {
+
+                        }
+                    });
+        }
+    }
     private void startScanning() {
 
         Iterator<Device> device = Engine.getInstance().getDevices().iterator();
@@ -452,5 +519,117 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
             return view;
         }
+    }
+
+    private void visiblePromptText() {
+        boolean bVisible = true;
+        if (pickedScopes.size() > 0){
+            bVisible = false;
+        }
+        if (txtScopePrompt != null){
+            if (bVisible){
+                txtScopePrompt.setVisibility(View.VISIBLE);
+            }
+            else {
+                txtScopePrompt.setVisibility(View.GONE);
+            }
+        }
+    }
+    private void onPickedScope(JsonElement[] scopes){
+        pickedScopes.clear();
+        //for (int i = 0; i < scopes.length; i++) {
+            JsonElement element = scopes[0];
+            ScopeObj scopeObj = new ScopeObj();
+            try{
+                JSONObject jsonObject = new JSONObject(new Gson().toJson(element));
+                scopeObj.parseFromJson(jsonObject);
+                pickedScopes.add(scopeObj);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        //}
+        visiblePromptText();
+        scopeAdapter.notifyDataSetChanged();
+    }
+    @Override
+    public void onEventMessage(HubMessage message) {
+
+    }
+
+
+    @Override
+    public void onConnected() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, "Connected", Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
+    @Override
+    public void onDisconnected() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, "Disconnected", Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
+    @Override
+    public void onMessage(HubMessage message) {
+        final  HubMessage hubMessage = message;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Gson gson = new Gson();
+                String strType = hubMessage.getTarget();
+                if(strType.equals("NewScopeScanned")) {
+
+                }
+                else if(strType.equals("ScopePicked")) {
+                    onPickedScope(hubMessage.getArguments());
+                }
+
+//                final String strJson = gson.toJson(hubMessage.getArguments());
+//                Toast.makeText(MainActivity.this, "Message Received" + strJson, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    @Override
+    public void onError(Exception exception) {
+
+    }
+
+    private String authHeader = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Ijc5NzhjMjI3LWViMGItNGMwOS1iYWEyLTEwYmE0MjI4YWE4OSIsImNlcnRzZXJpYWxudW1iZXIiOiJtYWNfYWRkcmVzc19vZl9waG9uZSIsInNlY3VyaXR5U3RhbXAiOiJlMTAxOWNiYy1jMjM2LTQ0ZTEtYjdjYy0zNjMxYTYxYzMxYmIiLCJuYmYiOjE1MDYyODQ4NzMsImV4cCI6NDY2MTk1ODQ3MywiaWF0IjoxNTA2Mjg0ODczLCJpc3MiOiJCbGVuZCIsImF1ZCI6IkJsZW5kIn0.QUh241IB7g3axLcfmKR2899Kt1xrTInwT6BBszf6aP4";
+    private HubConnection connection = new WebSocketHubConnectionP2("http://tracking-dev.o7tc.com/hubs/Bluetooth", authHeader);
+
+    private void connectWebSocket() {
+        connection.addListener(this);
+        connection.subscribeToEvent("Send", this);
+//        try {
+//            connection.invoke("Send", "Hello");
+//        } catch (Exception e) {
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
+//        }
+
+        try {
+            connection.connect();
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        connection.removeListener(this);
+        connection.unSubscribeFromEvent("Send", this);
+        connection.disconnect();
     }
 }

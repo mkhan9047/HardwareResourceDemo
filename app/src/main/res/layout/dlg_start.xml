@@ -23,13 +23,26 @@
             android:layout_marginLeft="@dimen/dp15"
             android:layout_marginRight="@dimen/dp8"
             android:background="@drawable/back_scope">
-            <Spinner
-                android:id="@+id/spScope"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp5"
-                android:layout_marginLeft="@dimen/dp10">
-            </Spinner>
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/spScope"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_marginLeft="@dimen/dp10">
+
+                </Spinner>
+                <TextView
+                    android:id="@+id/txtScopePrompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Waiting for Scope"
+                    android:gravity="center"
+                    android:layout_alignTop="@+id/spScope"
+                    android:layout_alignBottom="@+id/spScope"/>
+            </RelativeLayout>
             <ImageView
                 android:id="@+id/imgScope"
                 android:layout_width="match_parent"

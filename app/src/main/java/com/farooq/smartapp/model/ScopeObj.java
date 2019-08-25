@@ -123,7 +123,10 @@ public class ScopeObj implements Serializable {
         catch (Exception e){
 
         }
+    }
 
-
+    @Override
+    public String toString() {
+        return getName();
     }
 }
