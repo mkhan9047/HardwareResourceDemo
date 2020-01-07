@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.farooq.smartapp.model.ScopeObj;
 
@@ -26,9 +27,9 @@ public class ScopeCardsActivity extends BaseActivity {
         initActivity();
     }
 
-    private void initActivity(){
-        gridView = (GridView) findViewById(R.id.grdScope);
-        for (int i = 0; i < 10; i++){
+    private void initActivity() {
+        gridView = findViewById(R.id.grdScope);
+        for (int i = 0; i < 10; i++) {
             ScopeObj scopeObj = new ScopeObj();
             mArrScopes.add(scopeObj);
         }
@@ -36,8 +37,7 @@ public class ScopeCardsActivity extends BaseActivity {
         gridView.setAdapter(mAdapter);
     }
 
-
-    public class ScopeAdapter extends BaseAdapter {
+    public static class ScopeAdapter extends BaseAdapter {
         private Context context;
         private final ArrayList<ScopeObj> mArrScopes;
 
@@ -60,9 +60,8 @@ public class ScopeCardsActivity extends BaseActivity {
                 // get layout from mobile.xml
                 gridView = inflater.inflate(R.layout.grid_item_scope, null);
 
-
             } else {
-                gridView = (View) convertView;
+                gridView = convertView;
             }
 
             return gridView;

@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\src\\main\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release\\armeabi-v7a\" --target clean"
+  ],
+  "libraries": {
+    "serial_port-Release-armeabi-v7a": {
+      "artifactName": "serial_port",
+      "buildCommand": "C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release\\armeabi-v7a\" --target serial_port",
+      "abi": "armeabi-v7a",
+      "output": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\libserial_port.so"
+    }
+  }
+}

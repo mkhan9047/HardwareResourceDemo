@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Smart Tracking - Android.iml" filepath="$PROJECT_DIR$/Smart Tracking - Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmartTracking.iml" filepath="$PROJECT_DIR$/SmartTracking.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rfreaderinterface/rfreaderinterface.iml" filepath="$PROJECT_DIR$/rfreaderinterface/rfreaderinterface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stepview/stepview.iml" filepath="$PROJECT_DIR$/stepview/stepview.iml" />
     </modules>
   </component>
 </project>

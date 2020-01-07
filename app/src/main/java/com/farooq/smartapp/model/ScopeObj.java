@@ -6,17 +6,17 @@ import java.io.Serializable;
 
 public class ScopeObj implements Serializable {
 
-    private String     id;
-    private String  companyId;
-    private int     status;
-    private String  rfValue;
-    private String  model;
-    private String  name;
-    private String  notes;
-    private int     lowerLimit;
-    private int     upperLimit;
-    private String  imagePath;
-    private String  thumbnailPath;
+    private String id;
+    private String companyId;
+    private int status;
+    private String rfValue;
+    private String model;
+    private String name;
+    private String notes;
+    private int lowerLimit;
+    private int upperLimit;
+    private String imagePath;
+    private String thumbnailPath;
 
     public String getId() {
         return id;
@@ -106,6 +106,7 @@ public class ScopeObj implements Serializable {
         this.thumbnailPath = thumbnailPath;
     }
 
+
     public void parseFromJson(JSONObject jsonObject) {
 
         try {
@@ -119,11 +120,11 @@ public class ScopeObj implements Serializable {
             this.upperLimit = jsonObject.getInt("upperLimit");
             this.imagePath = jsonObject.getString("imagePath");
             this.thumbnailPath = jsonObject.getString("thumbnailPath");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
+
 
     @Override
     public String toString() {

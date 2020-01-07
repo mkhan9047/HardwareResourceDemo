@@ -1,0 +1,41 @@
+
+{
+	"buildFiles" : 
+	[
+		"C:/Users/Farooq/Documents/SmartTracking 21stNov/SmartTracking/rfreaderinterface/src/main/CMakeLists.txt"
+	],
+	"cFileExtensions" : [ "c" ],
+	"cleanCommands" : 
+	[
+		"C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\debug\\x86\" --target clean"
+	],
+	"libraries" : 
+	{
+		"serial_port-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "serial_port",
+			"buildCommand" : "C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\debug\\x86\" --target serial_port",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android18 --gcc-toolchain=C:/Users/Farooq/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 -Dserial_port_EXPORTS -I\"C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\src\\main\\..\\..\\include\"  --sysroot C:/Users/Farooq/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC      -c ",
+					"src" : "C:/Users/Farooq/Documents/SmartTracking 21stNov/SmartTracking/rfreaderinterface/src/main/cpp/SerialPort.c",
+					"workingDirectory" : "C:/Users/Farooq/Documents/SmartTracking 21stNov/SmartTracking/rfreaderinterface/.cxx/cmake/debug/x86"
+				}
+			],
+			"output" : "C:/Users/Farooq/Documents/SmartTracking 21stNov/SmartTracking/rfreaderinterface/build/intermediates/cmake/debug/obj/x86/libserial_port.so",
+			"toolchain" : "966741785"
+		}
+	},
+	"toolchains" : 
+	{
+		"966741785" : 
+		{
+			"cCompilerExecutable" : "C:/Users/Farooq/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "C:/Users/Farooq/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

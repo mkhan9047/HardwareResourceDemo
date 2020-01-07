@@ -6,7 +6,6 @@
     android:padding="@dimen/dp10"
     android:background="@drawable/back_scope">
 
-
     <TextView
         android:id="@+id/txtScopeName"
         android:layout_width="wrap_content"

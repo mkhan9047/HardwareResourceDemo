@@ -15,4 +15,26 @@
         <item>Signed write</item>
         <item>Extended props</item>
     </string-array>
+
+    <string name="title_activity_device_register">Device Register</string>
+    <string name="checkTabletRegistration">Please while check tablet registration</string>
+    <string name="tabletRegistration">Please enter tablet name</string>
+    <string name="register_button">Register your tablet</string>
+    <string name="title_activity_settings_tabbed">SettingsTabbedActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="register">register</string>
+    <string name="upper_limit">Upper limit</string>
+    <string name="select_an_instrument">Select an Instrument</string>
+    <string name="model">Model</string>
+    <string name="name">Name</string>
+    <string name="notes">Notes</string>
+    <string name="lower_limit">Lower limit</string>
+    <string name="rf_value">RF Value</string>
+    <string name="instrument">Instrument</string>
+    <string name="general">General</string>
+    <string name="tablet_info">Tablet Info</string>
+    <string name="settings">Settings</string>
 </resources>

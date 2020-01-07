@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="@dimen/dp18"
-            android:text="SmartVisualInspection"
+            android:text="Smart Visual Inspection"
             android:gravity="center_vertical"
             android:layout_marginLeft="@dimen/dp15"
             android:textColor="@color/clr_white"/>

@@ -1,0 +1,70 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking",
+      "sdkFolder": "C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\build\\intermediates",
+      "gradleModulePathName": ":rfreaderinterface",
+      "moduleRootFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface",
+      "makeFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\src\\main\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\.cxx",
+      "cxxFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx",
+      "ndkFolder": "C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\ndk-bundle",
+      "ndkVersion": "19.0.5232133",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "release",
+    "soFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\build\\intermediates\\cmake\\release\\lib",
+    "objFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\build\\intermediates\\cmake\\release\\obj",
+    "jsonFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release",
+    "gradleBuildOutputFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cxx\\release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 18,
+  "cxxBuildFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release\\armeabi-v7a",
+  "jsonFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release\\armeabi-v7a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cxx\\release\\armeabi-v7a",
+  "objFolder": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a",
+  "buildCommandFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release\\armeabi-v7a\\build_command.txt",
+  "buildOutputFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release\\armeabi-v7a\\build_output.txt",
+  "modelOutputFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release\\armeabi-v7a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cxx\\release\\armeabi-v7a\\CMakeLists.txt",
+    "toolchainWrapperFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cxx\\release\\armeabi-v7a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cxx\\release\\armeabi-v7a\\build_generation_state.json",
+    "cacheKeyFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release\\armeabi-v7a\\json_generation_record.json",
+  "compileCommandsJsonFile": "C:\\Users\\Farooq\\Documents\\SmartTracking 21stNov\\SmartTracking\\rfreaderinterface\\.cxx\\cmake\\release\\armeabi-v7a\\compile_commands.json"
+}

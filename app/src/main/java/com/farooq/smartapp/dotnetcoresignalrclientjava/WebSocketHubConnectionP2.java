@@ -9,6 +9,9 @@ import com.google.gson.JsonElement;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,7 +49,7 @@ public class WebSocketHubConnectionP2 implements HubConnection {
 
     @Override
     public synchronized void connect() {
-        if (client != null && (client.isOpen() || client.isConnecting()))
+        if (client != null && (client.isOpen()))//|| client.isConnecting()
             return;
 
         Runnable runnable;
@@ -72,6 +75,9 @@ public class WebSocketHubConnectionP2 implements HubConnection {
             throw new RuntimeException("URL must start with http or https");
 
         try {
+            for (HubConnectionListener listener : listeners) {
+                listener.onInitConnection();
+            }
             String negotiateUri = parsedUri.buildUpon().appendPath("negotiate").build().toString();
             HttpURLConnection connection = (HttpURLConnection) new URL(negotiateUri).openConnection();
             if (authHeader != null && !authHeader.isEmpty()) {
@@ -133,25 +139,39 @@ public class WebSocketHubConnectionP2 implements HubConnection {
 
                 @Override
                 public void onMessage(String message) {
-                    Log.i(TAG, message);
-                    String[] messages = message.split(SPECIAL_SYMBOL);
-                    for (String m : messages) {
-                        SignalRMessage element = gson.fromJson(m, SignalRMessage.class);
-                        Integer type = element.getType();
-                        if (type != null && type == 1) {
-                            HubMessage hubMessage = new HubMessage(element.getInvocationId(), element.getTarget(), element.getArguments());
-                            for (HubConnectionListener listener : listeners) {
-                                listener.onMessage(hubMessage);
-                            }
+                    //if (message.length()>12)
+                        Log.i(TAG, message);
+                        try {
+                            if (message.trim().endsWith("}."))
+                                message = message.replace("}.","}");
+                            JSONObject jsonObject = new JSONObject(message);
 
-                            List<HubEventListener> hubEventListeners = eventListeners.get(hubMessage.getTarget());
-                            if (hubEventListeners != null) {
-                                for (HubEventListener listener : hubEventListeners) {
-                                    listener.onEventMessage(hubMessage);
-                                }
+//                            if (!jsonObject.getString("type").equalsIgnoreCase("6"))
+//                            {
+//                                HubMessage hubMessage = new HubMessage(jsonObject.getString("type"), jsonObject.getString("target")
+//                                        , jsonObject.getJSONArray("arguments"));
+//                                for (HubConnectionListener listener : listeners) {
+//                                    listener.onMessage(hubMessage);
+//                                }
+//                            }
+
+                            if (jsonObject.getString("type").equalsIgnoreCase("6"))
+                            {
+                                jsonObject.put("target","test");
+                                jsonObject.put("arguments",new JSONArray());
                             }
+                                HubMessage hubMessage = new HubMessage(jsonObject.getString("type"), jsonObject.getString("target")
+                                        , jsonObject.getJSONArray("arguments"));
+                                for (HubConnectionListener listener : listeners) {
+                                    listener.onMessage(hubMessage);
+                                }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();// TODO: 30/11/2019  
                         }
-                    }
+
+
                 }
 
                 @Override
@@ -177,6 +197,9 @@ public class WebSocketHubConnectionP2 implements HubConnection {
             error(e);
         }
         Log.i(TAG, "Connecting...");
+        for (HubConnectionListener listener : listeners) {
+            listener.onConnecting();
+        }
         client.connect();
     }
 

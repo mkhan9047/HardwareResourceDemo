@@ -1,64 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60"
-        android:orientation="horizontal"
-        android:background="@color/clr_blue">
+        android:layout_height="?android:actionBarSize"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/title"
+            android:gravity="center_vertical|center"
+            android:text="Live Procedure Tracking"
+            android:textColor="@color/clr_white"
+            android:textSize="@dimen/dp18" />
+
+        <ImageView
+            android:id="@+id/settings"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="@dimen/dp18"
-            android:text="SmartVisualInspection"
+            android:layout_alignParentEnd="true"
             android:gravity="center_vertical"
-            android:layout_marginLeft="@dimen/dp15"
-            android:textColor="@color/clr_white"/>
+            android:padding="@dimen/dp10"
+            android:src="@drawable/ic_setting"
+            android:textColor="@color/clr_white" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
         android:layout_weight="100">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="List of Scopes"
-                android:layout_marginTop="@dimen/dp15"
-                android:layout_marginLeft="@dimen/dp15"
-                android:textSize="@dimen/dp15"/>
-            <ListView
-                android:id="@+id/lstScope"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="100"
-                android:layout_margin="@dimen/dp15"
-                android:dividerHeight="0dp"
-                android:divider="@null">
-        </ListView>
-        </LinearLayout>
 
         <Button
             android:id="@+id/btnStart"
             android:layout_width="@dimen/dp80"
             android:layout_height="@dimen/dp80"
-            android:background="@drawable/btn_start"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp10"/>
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/dp10"
+            android:background="@drawable/btn_start" />
+
+        <ImageView
+            android:id="@+id/btnScan"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/dp25"
+            android:layout_marginBottom="@dimen/dp25"
+            android:visibility="gone"
+            android:background="@color/clr_white"
+            android:src="@drawable/ic_scan" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btnStart"
+            android:orientation="vertical">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/pullToRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/lstProcedure"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dp12"
+                    android:divider="@null" />
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/no_datafound_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/teslayfortag"
+            android:layout_margin="@dimen/dp2"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/tag1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="tag 1" />
+
+            <Button
+                android:id="@+id/tag2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="tag 2" />
+
+            <Button
+                android:id="@+id/tag3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="tag 3" />
+        </LinearLayout>
+
     </RelativeLayout>
 
-</LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+
+</RelativeLayout>

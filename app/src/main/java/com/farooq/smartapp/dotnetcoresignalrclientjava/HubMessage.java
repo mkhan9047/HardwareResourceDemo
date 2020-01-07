@@ -2,12 +2,14 @@ package com.farooq.smartapp.dotnetcoresignalrclientjava;
 
 import com.google.gson.JsonElement;
 
+import org.json.JSONArray;
+
 public class HubMessage {
     private String invocationId = "";
     private String target = "";
-    private JsonElement[] arguments;
+    private JSONArray arguments;
 
-    public HubMessage(String invocationId, String target, JsonElement[] arguments) {
+    public HubMessage(String invocationId, String target, JSONArray arguments) {
         this.invocationId = invocationId;
         this.target = target;
         this.arguments = arguments;
@@ -29,11 +31,11 @@ public class HubMessage {
         this.target = target;
     }
 
-    public JsonElement[] getArguments() {
+    public JSONArray getArguments() {
         return arguments;
     }
 
-    public void setArguments(JsonElement[] arguments) {
+    public void setArguments(JSONArray arguments) {
         this.arguments = arguments;
     }
 }

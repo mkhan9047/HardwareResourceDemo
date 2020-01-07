@@ -7,22 +7,26 @@
  * Copyright (c) 2013, Bluegiga Technologies
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files ("Software")
- * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  *
- * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF 
+ * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF
  * ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT
  * NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A  PARTICULAR PURPOSE.
  */
 package com.farooq.smartapp.datamodel;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.farooq.smartapp.R;
 
+import java.net.NetworkInterface;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 // Common - contains common members and methods for whole application
@@ -58,11 +62,11 @@ public class Common {
 
     public static int FIRST_SFLOAT_RESERVED_VALUE = SFLOAT_POSITIVE_INFINITY;
 
-    static final float[] reservedSFloatValues = { SFLOAT_POSITIVE_INFINITY, SFLOAT_NaN, SFLOAT_NaN, SFLOAT_NaN,
-            SFLOAT_NEGATIVE_INFINITY };
+    static final float[] reservedSFloatValues = {SFLOAT_POSITIVE_INFINITY, SFLOAT_NaN, SFLOAT_NaN, SFLOAT_NaN,
+            SFLOAT_NEGATIVE_INFINITY};
 
-    static final float[] reservedFloatValues = { FLOAT_POSITIVE_INFINITY, FLOAT_NaN, FLOAT_NaN, FLOAT_NaN,
-            FLOAT_NEGATIVE_INFINITY };
+    static final float[] reservedFloatValues = {FLOAT_POSITIVE_INFINITY, FLOAT_NaN, FLOAT_NaN, FLOAT_NaN,
+            FLOAT_NEGATIVE_INFINITY};
 
     public enum PropertyType {
         BROADCAST(1),
@@ -209,4 +213,33 @@ public class Common {
             return strUuid;
         }
     }
+
+    public static String GetTabletMac() {
+        try {
+            List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface nif : all) {
+                if (!nif.getName().equalsIgnoreCase("wlan0")) continue;
+
+                byte[] macBytes = nif.getHardwareAddress();
+                if (macBytes == null) {
+                    return "";
+                }
+
+                StringBuilder res1 = new StringBuilder();
+                for (byte b : macBytes) {
+                    res1.append(Integer.toHexString(b & 0xFF) + ":");
+                }
+
+                if (res1.length() > 0) {
+                    res1.deleteCharAt(res1.length() - 1);
+                }
+                Log.d("MAC", "getMacAddr: " + res1.toString());
+//                return "10:20:30:50:20";
+                return res1.toString();
+            }
+        } catch (Exception ignored) {
+        }
+        return "";
+    }
+
 }

@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <!--    <color name="colorPrimary">#008577</color>-->
+    <color name="colorPrimary">#05adda</color>
+    <color name="colorPrimaryDark">#0483A8</color>
+    <color name="colorAccent">#05adda</color>
     <color name="clr_white">#ffffff</color>
-    <color name="clr_green">#35c80e</color>
+    <color name="clr_green">#FAFAFA</color>
     <color name="white_tran">#AAffffff</color>
     <color name="clr_blue">#3c59c9</color>
+    <color name="clr_skyblue">#05adda</color>
+
+    <color name="clr_orange">#E36B10</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="black_transfarent">#00000000</color>
+    <color name="yellow">#FFEB3B</color>
 </resources>
