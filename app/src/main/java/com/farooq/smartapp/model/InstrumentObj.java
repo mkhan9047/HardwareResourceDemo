@@ -14,6 +14,33 @@ public class InstrumentObj implements Serializable {
     private String notes;
     private int lowerLimit;
     private int upperLimit;
+    private String department;
+    private String organization;
+    private String facility;
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public void setFacility(String facility) {
+        this.facility = facility;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public String getFacility() {
+        return facility;
+    }
 
     private String procedureDefinitionId;
     private int sortIndex;
@@ -164,6 +191,9 @@ public class InstrumentObj implements Serializable {
             jsonObject.put("notes", notes);
             jsonObject.put("lowerLimit", lowerLimit);
             jsonObject.put("upperLimit", upperLimit);
+            jsonObject.put("facility", facility);
+            jsonObject.put("organization", organization);
+            jsonObject.put("department", department);
             return jsonObject;
         } catch (Exception e) {
         }

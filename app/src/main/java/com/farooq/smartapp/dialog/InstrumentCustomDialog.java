@@ -35,7 +35,10 @@ public class InstrumentCustomDialog extends Dialog {
 
     private Context context;
 
-    private EditText rfValue, model, name, notes, lowerLimit, upperLimit;
+    private EditText rfValue, model,
+            name, notes, lowerLimit,
+            upperLimit, edtOrganization,
+            edtDepartment, edtFacility;
     private Button btnSubmit;
     private Dialog pdProgress;
     private InstrumentDialogCallback instrumentDialogCallback;
@@ -64,7 +67,6 @@ public class InstrumentCustomDialog extends Dialog {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (rfValue.getText().toString().trim().length() == 0) {
                     rfValue.setError("RF Value can`t be empty ?");
                 } else if (model.getText().toString().trim().length() <= 0) {
@@ -101,12 +103,14 @@ public class InstrumentCustomDialog extends Dialog {
         instrumentObj.setRfValue(rfValue.getText().toString());
         instrumentObj.setBarcodeValue("");
         instrumentObj.setModel(model.getText().toString());
+        instrumentObj.setDepartment(edtDepartment.getText().toString());
+        instrumentObj.setOrganization(edtOrganization.getText().toString());
+        instrumentObj.setFacility(edtFacility.getText().toString());
         instrumentObj.setName(name.getText().toString());
         instrumentObj.setNotes(notes.getText().toString());
         instrumentObj.setLowerLimit(Integer.parseInt(lowerLimit.getText().toString()));
         instrumentObj.setUpperLimit(Integer.parseInt(upperLimit.getText().toString()));
-        if (!checkInternetConnection(getContext()))
-        {
+        if (!checkInternetConnection(getContext())) {
             return;
         }
         showProgress();
@@ -118,7 +122,7 @@ public class InstrumentCustomDialog extends Dialog {
                         Toast.makeText(context, "Instrument register failed"
                                 + (status != null ? (" : " + status.getMessage() + ".") : "."), Toast.LENGTH_LONG).show();
                     } else {
-                        Log.i("DeviceRegisterActivity", json);
+                        Log.e("MKTEST", json);
                         JSONObject jsonObject = new JSONObject(json);
                         boolean bSucess = jsonObject.getBoolean(Constants.Key_Success);
                         if (bSucess) {
@@ -157,6 +161,9 @@ public class InstrumentCustomDialog extends Dialog {
         rfValue = findViewById(R.id.edt_rfValue);
         model = findViewById(R.id.edt_model);
         name = findViewById(R.id.edt_name);
+        edtDepartment = findViewById(R.id.edt_department);
+        edtFacility = findViewById(R.id.edt_facility);
+        edtOrganization = findViewById(R.id.edt_organization);
         notes = findViewById(R.id.edt_notes);
         lowerLimit = findViewById(R.id.edt_lowerLimit);
         upperLimit = findViewById(R.id.edt_upperLimit);

@@ -37,4 +37,7 @@
     <string name="general">General</string>
     <string name="tablet_info">Tablet Info</string>
     <string name="settings">Settings</string>
+    <string name="txt_organization">Organization</string>
+    <string name="txt_department">Department</string>
+    <string name="txt_facility">Facility</string>
 </resources>
