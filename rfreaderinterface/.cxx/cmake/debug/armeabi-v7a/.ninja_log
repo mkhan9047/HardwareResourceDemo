@@ -1,3 +1,5 @@
 # ninja log v5
-1	1237	0	CMakeFiles/serial_port.dir/cpp/SerialPort.c.o	9c1d588189221ce9
-1239	1400	0	C:/Users/Farooq/Documents/SmartTracking 21stNov/SmartTracking/rfreaderinterface/build/intermediates/cmake/debug/obj/armeabi-v7a/libserial_port.so	95e6016a62fdef38
+0	235	0	CMakeFiles/serial_port.dir/cpp/SerialPort.c.o	2b1246b970b77a6e
+236	288	0	F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/build/intermediates/cmake/debug/obj/armeabi-v7a/libserial_port.so	d6e8f69128d0c0df
+2	84	0	CMakeFiles/serial_port.dir/cpp/SerialPort.c.o	2b1246b970b77a6e
+84	131	0	F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/build/intermediates/cmake/debug/obj/armeabi-v7a/libserial_port.so	d6e8f69128d0c0df

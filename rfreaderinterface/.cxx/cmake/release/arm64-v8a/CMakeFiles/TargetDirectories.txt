@@ -1,3 +1,3 @@
-C:/Users/Farooq/Documents/SmartTracking 21stNov/SmartTracking/rfreaderinterface/.cxx/cmake/release/arm64-v8a/CMakeFiles/rebuild_cache.dir
-C:/Users/Farooq/Documents/SmartTracking 21stNov/SmartTracking/rfreaderinterface/.cxx/cmake/release/arm64-v8a/CMakeFiles/serial_port.dir
-C:/Users/Farooq/Documents/SmartTracking 21stNov/SmartTracking/rfreaderinterface/.cxx/cmake/release/arm64-v8a/CMakeFiles/edit_cache.dir
+F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/.cxx/cmake/release/arm64-v8a/CMakeFiles/rebuild_cache.dir
+F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/.cxx/cmake/release/arm64-v8a/CMakeFiles/serial_port.dir
+F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/.cxx/cmake/release/arm64-v8a/CMakeFiles/edit_cache.dir

@@ -107,8 +107,7 @@ public class ScopeObj implements Serializable {
     }
 
 
-    public void parseFromJson(JSONObject jsonObject) {
-
+    void parseFromJson(JSONObject jsonObject) {
         try {
             this.id = jsonObject.getString("id");
             this.companyId = jsonObject.getString("companyId");
@@ -120,7 +119,7 @@ public class ScopeObj implements Serializable {
             this.upperLimit = jsonObject.getInt("upperLimit");
             this.imagePath = jsonObject.getString("imagePath");
             this.thumbnailPath = jsonObject.getString("thumbnailPath");
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }

@@ -35,6 +35,7 @@ import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.atp.rfreaderinterface.BuildConfig;
 import com.farooq.smartapp.datamodel.Device;
 import com.farooq.smartapp.datamodel.Engine;
 
@@ -311,7 +312,10 @@ public class BluetoothLeService extends Service {
         // else calls connect function on this object
         if (device.getBluetoothGatt() == null) {
             Log.i("BLE service", "connect() is fresh, creating new BluetoothGatt instance");
-            BluetoothGatt bluetoothGatt = device.getBluetoothDevice().connectGatt(this, false, mGattCallback, BluetoothDevice.TRANSPORT_LE);
+            BluetoothGatt bluetoothGatt = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                bluetoothGatt = device.getBluetoothDevice().connectGatt(this, false, mGattCallback, BluetoothDevice.TRANSPORT_LE);
+            }
             device.setBluetoothGatt(bluetoothGatt);
         } else {
             Log.i("BLE service", "connect() is repeated, using existing BluetoothGatt instance");
@@ -369,7 +373,10 @@ public class BluetoothLeService extends Service {
                 }
             } else {
                 Log.i("BLE service", "connect1() is fresh, creating new BluetoothGatt instance");
-                BluetoothGatt bluetoothGatt = device.getBluetoothDevice().connectGatt(this, false, mGattCallback, BluetoothDevice.TRANSPORT_LE);
+                BluetoothGatt bluetoothGatt = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    bluetoothGatt = device.getBluetoothDevice().connectGatt(this, false, mGattCallback, BluetoothDevice.TRANSPORT_LE);
+                }
                 device.setBluetoothGatt(bluetoothGatt);
             }
         //}

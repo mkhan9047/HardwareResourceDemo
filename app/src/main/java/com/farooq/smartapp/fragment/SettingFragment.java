@@ -1,5 +1,6 @@
 package com.farooq.smartapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -15,6 +16,7 @@ import com.farooq.smartapp.R;
 import com.farooq.smartapp.ViewPagerAdapter;
 
 public class SettingFragment extends Fragment {
+
     TabLayout tabLayout;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
@@ -23,6 +25,7 @@ public class SettingFragment extends Fragment {
     public SettingFragment() {
         // Required empty public constructor
     }
+    @SuppressLint("ValidFragment")
     public SettingFragment(MainActivity activity) {
         mainActivity = activity;
     }

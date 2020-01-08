@@ -119,13 +119,12 @@ public class RecordObj implements Serializable {
             JSONObject accObj = jsonObject.getJSONObject("accessory");
             this.accessoryObj = new AccessoryObj();
             this.accessoryObj.parseFromJson(accObj);
-
             this.scopeObj = new ScopeObj();
             JSONObject scopeJson = jsonObject.getJSONObject("scope");
             this.scopeObj.parseFromJson(scopeJson);
 
         }
-        catch (Exception e){
+        catch (Exception ignored){
 
         }
 

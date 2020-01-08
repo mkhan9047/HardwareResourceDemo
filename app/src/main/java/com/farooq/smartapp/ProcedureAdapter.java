@@ -43,6 +43,13 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
 
         try {
             instrumentHolder.setName(procedureObj.getInstrumentName());
+            if (procedureObj.getDisplayName() != null) {
+                instrumentHolder.txtDisplayName.setText(procedureObj.getDisplayName());
+                instrumentHolder.txtDisplayName.setVisibility(View.VISIBLE);
+            } else {
+                instrumentHolder.txtDisplayName.setVisibility(View.GONE);
+            }
+
         } catch (Exception ignored) {
         }
 
@@ -99,12 +106,14 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
         private TextView txtName;
         private HorizontalStepView progressStepView;
         private View itemView;
+        private TextView txtDisplayName;
 
         InstrumentHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             txtName = itemView.findViewById(R.id.txtScopeName);
             progressStepView = itemView.findViewWithTag(R.id.stepview);
+            txtDisplayName = itemView.findViewById(R.id.txt_display_name);
         }
 
         public void setName(String name) {

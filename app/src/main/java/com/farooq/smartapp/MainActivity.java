@@ -806,7 +806,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void startScanning() {
-
         Iterator<Device> device = Engine.getInstance().getDevices().iterator();
         while (device.hasNext()) {
             if (device.next().getBluetoothDevice() != null) {

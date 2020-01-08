@@ -9,8 +9,8 @@ public class ApiConstant {
     //Server
     //public static final String SERVER = "http://52.22.152.156";
     //public static final String SERVER = "http://192.168.2.111:9095";
-    //public static final String SERVER = "http://smartatp-dev.o7tc.com";
-    public static String SERVER = "http://192.168.0.2";
+    //public static final String SERVER = "http://http://tracking-dev.o7tc.com";
+    public static String SERVER = "http://tracking-dev.o7tc.com";
     //public static final String SERVER = "http://medstir.appsolutionsdesign.net";
     //public static final String SERVER = "http://209.205.200.10:5000";
 

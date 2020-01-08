@@ -118,14 +118,18 @@ public class DeviceRegisterActivity extends BaseActivity {
                         JSONObject jsonObject = new JSONObject(json);
                         boolean bSuccess = jsonObject.getBoolean(Constants.Key_Success);
                         if (bSuccess) {
-                            Toast.makeText(DeviceRegisterActivity.this, "Device register successful", Toast.LENGTH_LONG).show();
-                            Constants.SetTabletInfo(DeviceRegisterActivity.this, jsonObject.getString(Constants.Key_Tablet));
+                            Toast.makeText(DeviceRegisterActivity.this,
+                                    "Device register successful", Toast.LENGTH_LONG).show();
+                            Constants.SetTabletInfo(DeviceRegisterActivity.this,
+                                    jsonObject.getString(Constants.Key_Tablet));
                             goToHomePage();
                         } else {
                             if (jsonObject.has(Constants.Key_Message)) {
-                                Toast.makeText(DeviceRegisterActivity.this, "" + jsonObject.getString(Constants.Key_Message), Toast.LENGTH_LONG).show();
+                                Toast.makeText(DeviceRegisterActivity.this,
+                                        "" + jsonObject.getString(Constants.Key_Message), Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(DeviceRegisterActivity.this, "Device register failed", Toast.LENGTH_LONG).show();
+                                Toast.makeText(DeviceRegisterActivity.this,
+                                        "Device register failed", Toast.LENGTH_LONG).show();
                             }
                         }
                     }

@@ -5,12 +5,24 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ProcedureObj {
+
     private String id;
     private String instrumentName;
+    private String displayName;
     private String currentStepStepDefinitionName;
     private String currentStepId;
     private ArrayList<StepItem> steps = new ArrayList<>();
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
     private InstrumentObj instrument;
+
     public static ChangeType InitChangeType(int chnageType)
     {
         if (chnageType==1)
