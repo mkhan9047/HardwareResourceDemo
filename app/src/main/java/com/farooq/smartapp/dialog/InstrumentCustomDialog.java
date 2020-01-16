@@ -64,24 +64,21 @@ public class InstrumentCustomDialog extends Dialog {
             getWindow().setGravity(Gravity.CENTER);
         }
         findId();
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rfValue.getText().toString().trim().length() == 0) {
-                    rfValue.setError("RF Value can`t be empty ?");
-                } else if (model.getText().toString().trim().length() <= 0) {
-                    model.setError("Model can`t be empty !");
-                } else if (name.getText().toString().trim().length() <= 0) {
-                    name.setError("Name can`t be empty !");
-                } else if (lowerLimit.getText().toString().trim().length() <= 0) {
-                    lowerLimit.setError("Lower Limit can`t be empty.");
-                } else if (upperLimit.getText().toString().trim().length() <= 0) {
-                    upperLimit.setError("Upper Limit can`t be empty.");
-                } else if (!validateLimit()) {
-                    lowerLimit.setError("Lower limit should be less than upper Limit.");
-                } else {
-                    createTestInstrument();
-                }
+        btnSubmit.setOnClickListener(view -> {
+            if (rfValue.getText().toString().trim().length() == 0) {
+                rfValue.setError("RF Value can`t be empty ?");
+            } else if (model.getText().toString().trim().length() <= 0) {
+                model.setError("Model can`t be empty !");
+            } else if (name.getText().toString().trim().length() <= 0) {
+                name.setError("Name can`t be empty !");
+            } else if (lowerLimit.getText().toString().trim().length() <= 0) {
+                lowerLimit.setError("Lower Limit can`t be empty.");
+            } else if (upperLimit.getText().toString().trim().length() <= 0) {
+                upperLimit.setError("Upper Limit can`t be empty.");
+            } else if (!validateLimit()) {
+                lowerLimit.setError("Lower limit should be less than upper Limit.");
+            } else {
+                createTestInstrument();
             }
         });
     }
@@ -122,7 +119,6 @@ public class InstrumentCustomDialog extends Dialog {
                         Toast.makeText(context, "Instrument register failed"
                                 + (status != null ? (" : " + status.getMessage() + ".") : "."), Toast.LENGTH_LONG).show();
                     } else {
-                        Log.e("MKTEST", json);
                         JSONObject jsonObject = new JSONObject(json);
                         boolean bSucess = jsonObject.getBoolean(Constants.Key_Success);
                         if (bSucess) {

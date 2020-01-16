@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.InstrumentHolder> {
+
     private MainActivity mainActivity;
 
     public ProcedureAdapter(MainActivity activity) {
@@ -43,13 +44,6 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
 
         try {
             instrumentHolder.setName(procedureObj.getInstrumentName());
-            if (procedureObj.getDisplayName() != null) {
-                instrumentHolder.txtDisplayName.setText(procedureObj.getDisplayName());
-                instrumentHolder.txtDisplayName.setVisibility(View.VISIBLE);
-            } else {
-                instrumentHolder.txtDisplayName.setVisibility(View.GONE);
-            }
-
         } catch (Exception ignored) {
         }
 
@@ -150,7 +144,13 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
         for (int i = 0; i < mArrSteps.size(); i++) {
             StepBean stepBean = mArrSteps.get(i).getUIStepBean();
             if (mArrSteps.get(i).getId().equalsIgnoreCase(selectedProcedureObj.getCurrentStepId())) {
-                stepBean.setName(selectedProcedureObj.getCurrentStepStepDefinitionName());
+                if (selectedProcedureObj.getDisplayName() != null) {
+                    stepBean.setName(String.format("%s - %s", selectedProcedureObj.getCurrentStepStepDefinitionName(),
+                            selectedProcedureObj.getDisplayName()));
+                } else {
+                    stepBean.setName(String.format("%s", selectedProcedureObj.getCurrentStepStepDefinitionName()));
+                }
+
             }
             if (!isSkipped)
                 isSkipped = mArrSteps.get(i).isSkipped();

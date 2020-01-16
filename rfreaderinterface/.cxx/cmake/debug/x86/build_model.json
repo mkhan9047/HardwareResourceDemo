@@ -5,7 +5,6 @@
       "sdkFolder": "C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk",
       "isNativeCompilerSettingsCacheEnabled": false,
       "isBuildOnlyTargetAbiEnabled": true,
-      "ideBuildTargetAbi": "x86",
       "splitsAbiFilterSet": [],
       "intermediatesFolder": "F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\build\\intermediates",
       "gradleModulePathName": ":rfreaderinterface",
@@ -40,7 +39,10 @@
     "gradleBuildOutputFolder": "F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\.cxx\\cxx\\debug",
     "isDebuggableEnabled": true,
     "validAbiList": [
-      "X86"
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
     ],
     "buildTargetSet": []
   },

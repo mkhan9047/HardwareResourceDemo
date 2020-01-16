@@ -35,6 +35,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.farooq.smartapp.Constants.checkInternetConnection;
 import static com.farooq.smartapp.Constants.setFragment;
@@ -135,7 +136,7 @@ public class InstrumentFragment extends Fragment implements ItemClickListener {
 
     private void loadInstrumentList() {
         try {
-            if (!checkInternetConnection(getActivity()))
+            if (!checkInternetConnection(Objects.requireNonNull(getActivity())))
             {
                 if (pullToRefresh.isRefreshing()) {
                     pullToRefresh.setRefreshing(false);
