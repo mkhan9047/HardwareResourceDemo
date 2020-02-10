@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.card.MaterialCardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,7 +95,7 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
     }
 
     public class InstrumentHolder extends RecyclerView.ViewHolder {
-
+        private MaterialCardView card_view_procedure;
         private TextView txtName;
         private HorizontalStepView progressStepView;
         private View itemView;
@@ -105,7 +106,8 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
             this.itemView = itemView;
             txtName = itemView.findViewById(R.id.txtScopeName);
             progressStepView = itemView.findViewWithTag(R.id.stepview);
-            txtDisplayName = itemView.findViewById(R.id.txt_display_name);
+            card_view_procedure = itemView.findViewById(R.id.card_view_procedure);
+           // txtDisplayName = itemView.findViewById(R.id.txt_display_name);
         }
 
         public void setName(String name) {
@@ -128,9 +130,11 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         public void setSkippedBackGround(boolean isStepView) {
             if (isStepView) {
-                this.itemView.setBackground(mainActivity.getDrawable(R.drawable.skipedbg));
+                //this.itemView.setBackground(mainActivity.getDrawable(R.drawable.skipedbg));
+               card_view_procedure.setStrokeColor(mainActivity.getResources().getColor(R.color.clr_red));
             } else {
-                this.itemView.setBackgroundColor(Color.TRANSPARENT);
+                //this.itemView.setBackgroundColor(Color.TRANSPARENT);
+                card_view_procedure.setStrokeColor(mainActivity.getResources().getColor(R.color.clr_white));
             }
         }
     }

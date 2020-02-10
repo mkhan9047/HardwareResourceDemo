@@ -24,6 +24,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -397,6 +398,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     ////// websocket code
 
 
+    private void showRFIDDialog(String message){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.layout_custom_dialog);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        TextView text = (TextView) dialog.findViewById(R.id.txt_rfid_tag);
+        text.setText(message);
+        TextView dialogButton =  dialog.findViewById(R.id.btn_ok);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
 
 
     private void connectWebSocket() {
@@ -526,7 +546,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
 
         boolean isScanTagForNewIntrument = false;
-        Toast.makeText(this, "Scan rfid : " + scanTag, Toast.LENGTH_SHORT).show();
+        showRFIDDialog(scanTag);
         if (fragment_Container.getVisibility() == View.VISIBLE) {
             List<Fragment> fragments = getSupportFragmentManager().getFragments();
             if (!fragments.isEmpty()) {
@@ -568,12 +588,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void ShowMessage(final String sMsg) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(MainActivity.this, sMsg, Toast.LENGTH_SHORT).show();
-            }
-        });
+        runOnUiThread(() -> Toast.makeText(MainActivity.this,
+                sMsg,
+                Toast.LENGTH_SHORT).show());
     }
 
     private void DispRecData(String ComRecData) {
