@@ -52,12 +52,15 @@ public class ScopeListActivity extends BaseActivity {
         scopeObj2.setStatus(2);
         mArrScopes.add(scopeObj2);
 
-        mAdapter = new ScopeListAdapter(this, android.R.layout.simple_spinner_item, mArrScopes);
+        mAdapter = new ScopeListAdapter(this,
+                android.R.layout.simple_spinner_item,
+                mArrScopes);
         lstScope.setAdapter(mAdapter);
     }
 
 
     public class ScopeListAdapter extends ArrayAdapter<ScopeObj> {
+
         private List<ScopeObj> devices;
         private LayoutInflater inflater;
 
@@ -69,19 +72,12 @@ public class ScopeListActivity extends BaseActivity {
 
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
-
             final ScopeObj scopeObj = mArrScopes.get(position);
-
             if (view == null) {
                 view = inflater.inflate(R.layout.item_scope_list, null);
-
             }
-            else {
-
-            }
-            TextView txtName = (TextView)view.findViewById(R.id.txtScopeName);
-            TextView txtStatus = (TextView)view.findViewById(R.id.txtScopeStatus);
-
+            TextView txtName = view.findViewById(R.id.txtScopeName);
+            TextView txtStatus = view.findViewById(R.id.txtScopeStatus);
             txtName.setText(scopeObj.getName());
             switch (scopeObj.getStatus()) {
                 case 0:

@@ -2,12 +2,12 @@
 {
 	"buildFiles" : 
 	[
-		"F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/src/main/CMakeLists.txt"
+		"/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/src/main/CMakeLists.txt"
 	],
 	"cFileExtensions" : [ "c" ],
 	"cleanCommands" : 
 	[
-		"C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\.cxx\\cmake\\debug\\arm64-v8a\" --target clean"
+		"/Users/almujahidkhan/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Ocean7\\ Project/Smart\\ Tracking\\ -\\ Android/rfreaderinterface/.cxx/cmake/debug/arm64-v8a --target clean"
 	],
 	"libraries" : 
 	{
@@ -15,27 +15,27 @@
 		{
 			"abi" : "arm64-v8a",
 			"artifactName" : "serial_port",
-			"buildCommand" : "C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\.cxx\\cmake\\debug\\arm64-v8a\" --target serial_port",
+			"buildCommand" : "/Users/almujahidkhan/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Ocean7\\ Project/Smart\\ Tracking\\ -\\ Android/rfreaderinterface/.cxx/cmake/debug/arm64-v8a --target serial_port",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=C:/Users/CITY/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/CITY/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dserial_port_EXPORTS -I\"F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\src\\main\\..\\..\\include\"  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC      -c ",
-					"src" : "F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/src/main/cpp/SerialPort.c",
-					"workingDirectory" : "F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/.cxx/cmake/debug/arm64-v8a"
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/almujahidkhan/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/almujahidkhan/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dserial_port_EXPORTS -I\"/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/src/main/../../include\"  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC      -c ",
+					"src" : "/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/src/main/cpp/SerialPort.c",
+					"workingDirectory" : "/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/.cxx/cmake/debug/arm64-v8a"
 				}
 			],
-			"output" : "F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/build/intermediates/cmake/debug/obj/arm64-v8a/libserial_port.so",
-			"toolchain" : "4292313447"
+			"output" : "/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/build/intermediates/cmake/debug/obj/arm64-v8a/libserial_port.so",
+			"toolchain" : "6875752526001758970"
 		}
 	},
 	"toolchains" : 
 	{
-		"4292313447" : 
+		"6875752526001758970" : 
 		{
-			"cCompilerExecutable" : "C:/Users/CITY/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
-			"cppCompilerExecutable" : "C:/Users/CITY/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+			"cCompilerExecutable" : "/Users/almujahidkhan/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/almujahidkhan/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
 		}
 	}
 }

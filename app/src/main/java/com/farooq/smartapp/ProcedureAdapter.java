@@ -41,14 +41,11 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
     @Override
     public void onBindViewHolder(@NonNull InstrumentHolder instrumentHolder, int i) {
         final ProcedureObj procedureObj = mainActivity.mArrayProcedureList.get(i);
-
         try {
             instrumentHolder.setName(procedureObj.getInstrumentName());
         } catch (Exception ignored) {
         }
-
         instrumentHolder.setSkippedBackGround(instrumentHolder.setStepViewName(procedureObj));
-
     }
 
     @Override
@@ -58,7 +55,8 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
 
     @Override
     public int getItemCount() {
-        return mainActivity.mArrayProcedureList == null ? 0 : mainActivity.mArrayProcedureList.size();
+        return mainActivity.mArrayProcedureList == null ? 0 :
+                mainActivity.mArrayProcedureList.size();
     }
 
     public void refresh() {

@@ -192,7 +192,6 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
         {
             Toast.makeText(getActivity(), "Update Address Failed.", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public static String GetServerAddress(Context context) {

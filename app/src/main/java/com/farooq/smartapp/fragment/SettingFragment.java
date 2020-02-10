@@ -41,7 +41,6 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_setting, container, false);
-
         tabLayout = view.findViewById(R.id.tabs);
         viewPager = view.findViewById(R.id.viewPager);
         floatingActionButton = view.findViewById(R.id.fab);
@@ -50,7 +49,6 @@ public class SettingFragment extends Fragment {
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         return view;
-
     }
 
 

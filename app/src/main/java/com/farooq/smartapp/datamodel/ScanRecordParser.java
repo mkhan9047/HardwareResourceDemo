@@ -124,7 +124,8 @@ public class ScanRecordParser {
             }
             break;
         case AD_TYPE_SECURITY_MANAGER_FLAGS:
-            advertismentData = String.format(AD_STRING_SECURITY_MANAGER_FLAGS, Converters.getHexValue(data));
+            advertismentData = String.format(AD_STRING_SECURITY_MANAGER_FLAGS,
+                    Converters.getHexValue(data));
             break;
         case AD_TYPE_SLAVE_CONNECTION_INTERVAL:
             advertismentData = AD_STRING_SLAVE_CONNECTION_INTERVAL;

@@ -132,7 +132,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         try {
             Engine.getInstance().init(this.getApplicationContext());
         } catch (Exception ex) {
-            Toast.makeText(MainActivity.this, "Failed to open bluetooth." + ex.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,
+                    "Failed to open bluetooth." + ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         initAdapter();
@@ -295,6 +296,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
 
     private void instrumentProcessUpdate(ProcedureObj updatedProcedureObj, Double stateChange) {
+
         try {
             boolean isUpdatedProcedureExist = false;
             ChangeType changeType;

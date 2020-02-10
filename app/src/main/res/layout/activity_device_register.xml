@@ -20,6 +20,23 @@
         android:hint="@string/tabletRegistration"
         android:textStyle="bold" />
 
+    <!--server address-->
+
+   <EditText
+        android:id="@+id/tablet_server_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lines="1"
+        android:inputType="text"
+        android:layout_below="@id/tablet_name_content"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="25dp"
+       android:imeOptions="actionDone"
+        android:hint="@string/tableWebServer"
+        android:textStyle="bold" />
+
+
     <Button  android:layout_width="match_parent"
         android:id="@+id/register"
         android:text="@string/register_button"

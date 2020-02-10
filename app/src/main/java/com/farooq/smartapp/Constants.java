@@ -21,7 +21,7 @@ import java.lang.reflect.Type;
 public class Constants {
 
 
-    public final static boolean IS_TESTING=false;
+    public final static boolean IS_TESTING = false;
 
     public final static String Key_Success = "success";
     public final static String Key_Message = "message";
@@ -40,17 +40,6 @@ public class Constants {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 Constants.Tablet_STORAGE_KEY, 0);
         String tablet_Register_info = sharedPreferences.getString(Constants.Tablet_Register_Info, null);
-/*
-{
-    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "macAddress": "string",
-    "ipAddress": "string",
-    "displayName": "string",
-    "registered": "2019-10-24T05:31:21.404Z",
-    "lastSeen": "2019-10-24T05:31:21.404Z",
-    "deleted": "2019-10-24T05:31:21.404Z"
-  }
-* */
         try {
             if (tablet_Register_info != null) {
                 JSONObject tablet_Register_jsoninfo = new JSONObject(tablet_Register_info);

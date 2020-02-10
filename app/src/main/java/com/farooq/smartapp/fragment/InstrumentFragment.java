@@ -156,10 +156,12 @@ public class InstrumentFragment extends Fragment implements ItemClickListener {
                                 Gson gson = new Gson();
                                 Type listType = new TypeToken<List<InstrumentObj>>() {
                                 }.getType();
-                                mArrayInstrument = gson.fromJson(jsonObject.getString(Constants.Key_Instrument), listType);
+                                mArrayInstrument = gson.fromJson(jsonObject.getString(Constants.Key_Instrument),
+                                        listType);
                                 instrumentListAdapter.refresh(mArrayInstrument);
                             } catch (Exception ignored) {
-                                Toast.makeText(InstrumentFragment.this.getActivity(), "Failed to parse Instrument response.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(InstrumentFragment.this.getActivity(),
+                                        "Failed to parse Instrument response.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

@@ -19,6 +19,7 @@
     <string name="title_activity_device_register">Device Register</string>
     <string name="checkTabletRegistration">Please while check tablet registration</string>
     <string name="tabletRegistration">Please enter tablet name</string>
+    <string name="tableWebServer">Please enter server url</string>
     <string name="register_button">Register your tablet</string>
     <string name="title_activity_settings_tabbed">SettingsTabbedActivity</string>
     <string name="tab_text_1">Tab 1</string>

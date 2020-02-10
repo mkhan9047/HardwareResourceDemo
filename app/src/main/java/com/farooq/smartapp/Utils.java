@@ -129,19 +129,16 @@ public class Utils {
     }
 
     public static boolean permission_check_only(Context context, String[] permission_array){
-
         boolean one_by_one_check = true;
-
         if(android.os.Build.VERSION.SDK_INT >= 23){
             for (int i = 0; i < permission_array.length; i++) {
-
-                if (ActivityCompat.checkSelfPermission(context, permission_array[i]) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(context,
+                        permission_array[i]) != PackageManager.PERMISSION_GRANTED) {
                     // Request missing location permission.
                     one_by_one_check = false;
                 }
             }
         }
-
         return  one_by_one_check;
     }
 

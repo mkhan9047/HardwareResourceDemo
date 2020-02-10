@@ -1,6 +1,7 @@
 package com.farooq.smartapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -32,33 +33,35 @@ import static com.farooq.smartapp.datamodel.Common.GetTabletMac;
 
 public class DeviceRegisterActivity extends BaseActivity {
 
-    private EditText txtTabletName;
+    static final String SERVER_ADDRESS = "server_address";
+    static final String APP_TRACKING_DATA = "TrackingAppData";
+    private EditText txtTabletName, editextServerAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_register);
         txtTabletName = findViewById(R.id.tablet_name_content);
+        editextServerAddress = findViewById(R.id.tablet_server_address);
         ApiConstant.SERVER = GeneralFragment.GetServerAddress(DeviceRegisterActivity.this);
-
         if (!IS_TESTING) {
         if (Constants.getTabletRegisterId(this) != null) {
             goToHomePage();
         }
         else
         {
-            GetTabletInfo();
+           // GetTabletInfo();
         }
-    }
+        }
+
         findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                saveAddress();
                 if (IS_TESTING)
                 {
                     TestRegisterDeviceProcess();
-                }
-                else
-                {
+                } else {
                     registerDeviceProcess();
                 }
             }
@@ -87,6 +90,21 @@ public class DeviceRegisterActivity extends BaseActivity {
     private void goToHomePage() {
         this.startActivity(new Intent(this, MainActivity.class));
         finish();
+    }
+
+    private void saveAddress() {
+        try {
+            SharedPreferences sPref = getSharedPreferences(APP_TRACKING_DATA, MODE_PRIVATE);
+            SharedPreferences.Editor ed = sPref.edit();
+            String addressString = editextServerAddress.getText().toString().trim();
+            ed.putString(SERVER_ADDRESS, addressString);
+            ApiConstant.SERVER = addressString;
+            ed.apply();
+          //  Toast.makeText(this, "Update Address Successfully.", Toast.LENGTH_SHORT).show();
+        }catch (Exception ex)
+        {
+            Toast.makeText(this, "Update Address Failed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void registerDeviceProcess() {
