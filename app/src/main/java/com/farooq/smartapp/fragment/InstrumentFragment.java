@@ -73,7 +73,7 @@ public class InstrumentFragment extends Fragment implements ItemClickListener {
         instrumentalist = view.findViewById(R.id.lstInstrument);
         pullToRefresh = view.findViewById(R.id.pullToRefresh);
         instrument = view.findViewById(R.id.tv_instrument);
-        general = view.findViewById(R.id.tv_general);
+        general = view.findViewById(R.id.btn_general);
         fab = view.findViewById(R.id.fab);
         back = view.findViewById(R.id.btn_back);
 

@@ -67,7 +67,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
 
         address = view.findViewById(R.id.edit_text_server_url);
         send = view.findViewById(R.id.img_btn_go);
-        instrument = view.findViewById(R.id.tv_instrument);
+        instrument = view.findViewById(R.id.btn_instrument);
         general = view.findViewById(R.id.tv_general);
 
         device_name = view.findViewById(R.id.txt_name_value);
