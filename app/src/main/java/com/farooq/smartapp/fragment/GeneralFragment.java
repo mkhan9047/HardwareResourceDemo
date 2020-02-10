@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +45,8 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
     static final String SERVER_ADDRESS = "server_address";
     static final String APP_TRACKING_DATA = "TrackingAppData";
     private EditText address;
-    private ImageView send, back;
+    private ImageView back;
+    private ImageButton send;
     TextView instrument, general, device_name, device_mac;
     private static final String BACK_STACK_ROOT_TAG = "root_fragment";
     private Dialog pdProgress;
@@ -63,13 +65,13 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_general, container, false);
 
-        address = view.findViewById(R.id.edt_address);
-        send = view.findViewById(R.id.send);
+        address = view.findViewById(R.id.edit_text_server_url);
+        send = view.findViewById(R.id.img_btn_go);
         instrument = view.findViewById(R.id.tv_instrument);
         general = view.findViewById(R.id.tv_general);
 
-        device_name = view.findViewById(R.id.tab_name);
-        device_mac = view.findViewById(R.id.tab_mac);
+        device_name = view.findViewById(R.id.txt_name_value);
+        device_mac = view.findViewById(R.id.txt_mac_address_value);
         back = view.findViewById(R.id.btn_back);
 
 
@@ -203,7 +205,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.send:
+            case R.id.img_btn_go:
                     saveAddress();
 
                 break;

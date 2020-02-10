@@ -191,10 +191,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/background_option_text"
                 android:gravity="center"
                 android:textSize="16sp"
-                android:textColor="@color/clr_white"
                 android:textStyle="bold"
                 android:text="Instrument"
                 />
@@ -205,13 +203,194 @@
                 android:text="General"
                 android:textSize="16sp"
                 android:gravity="center"
+                android:textColor="@color/clr_white"
+                android:background="@drawable/background_option_text"
                 android:textStyle="bold"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
 
+        <TextView
+            android:id="@+id/txt_web_server_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Web Server URL"
+            android:textColor="@color/txt_color"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/card_view_web_server_url"
+            app:layout_constraintTop_toBottomOf="@id/layout_option_changer" />
 
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/card_view_web_server_url"
+            app:layout_constraintTop_toBottomOf="@id/txt_web_server_url"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardUseCompatPadding="true"
+            >
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="http://tracking-dev.o7tc.com"
+                    android:id="@+id/edit_text_server_url"
+                    android:singleLine="true"
+                    android:padding="8dp"
+                    app:layout_constraintEnd_toStartOf="@id/img_btn_go"
+                    android:background="@null"
+                    />
+
+                <ImageButton
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_go"
+                    android:id="@+id/img_btn_go"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintStart_toEndOf="@id/edit_text_server_url"
+                    app:layout_constraintTop_toTopOf="@id/edit_text_server_url"
+                    app:layout_constraintBottom_toBottomOf="@id/edit_text_server_url"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <!--end of web server part-->
+
+        <TextView
+            android:id="@+id/txt_tablet_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Tablet Info"
+            android:textColor="@color/txt_color"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintBottom_toTopOf="@id/card_view_tablet_info"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_view_web_server_url" />
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:id="@+id/card_view_tablet_info"
+            app:layout_constraintTop_toBottomOf="@id/txt_tablet_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardUseCompatPadding="true"
+            >
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="@color/txt_color"
+                    android:textStyle="bold"
+                    android:id="@+id/txt_name"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toTopOf="@id/line_tablet_info"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:id="@+id/line_tablet_info"
+                    android:background="@color/txt_color"
+                    app:layout_constraintTop_toBottomOf="@id/txt_name"
+                    app:layout_constraintStart_toStartOf="@id/txt_name"
+                    app:layout_constraintBottom_toTopOf="@id/txt_mac_address"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mac Address"
+                    android:textColor="@color/txt_color"
+                    android:textStyle="bold"
+                    android:id="@+id/txt_mac_address"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@id/line_tablet_info"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_name_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    tools:text="Inspection Name"
+                    android:textSize="16sp"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_name"
+                    app:layout_constraintTop_toTopOf="@id/txt_name" />
+
+
+                <TextView
+                    android:id="@+id/txt_mac_address_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    tools:text="34:d5:43:g3"
+                    app:layout_constraintHorizontal_bias="1"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_mac_address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_mac_address"
+                    app:layout_constraintTop_toTopOf="@id/txt_mac_address" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </android.support.v7.widget.CardView>
 
 
     </android.support.constraint.ConstraintLayout>

@@ -5,7 +5,7 @@
       "sdkFolder": "/Users/almujahidkhan/Library/Android/sdk",
       "isNativeCompilerSettingsCacheEnabled": false,
       "isBuildOnlyTargetAbiEnabled": true,
-      "ideBuildTargetAbi": "x86",
+      "ideBuildTargetAbi": "x86,armeabi-v7a,armeabi",
       "splitsAbiFilterSet": [],
       "intermediatesFolder": "/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/build/intermediates",
       "gradleModulePathName": ":rfreaderinterface",
@@ -40,7 +40,8 @@
     "gradleBuildOutputFolder": "/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/.cxx/cxx/debug",
     "isDebuggableEnabled": true,
     "validAbiList": [
-      "X86"
+      "X86",
+      "ARMEABI_V7A"
     ],
     "buildTargetSet": []
   },
