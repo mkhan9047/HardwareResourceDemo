@@ -76,7 +76,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private static final int BlUETOOTH_SETTINGS_REQUEST_CODE = 100;
     private static IntentFilter bleIntentFilter;
     private final int PERMISSION_All_REQUEST_CODE = 67;
-
     RFReader mPort;
     //    public static final String CMD_WAKE = "00";
 //    public static final String CMD_SLEEP = "020720420401002938";
@@ -232,7 +231,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
 
     private void loadProcedureList(final boolean needProgress) {
-
         try {
             if (!checkInternetConnection(this)) {
                 if (pullToRefresh.isRefreshing()) {
@@ -253,7 +251,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                                 pullToRefresh.setRefreshing(false);
                             }
                             if (json == null) {
-                                Toast.makeText(MainActivity.this, "Failed to load procedures, " + status.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this,
+                                        "Failed to load procedures, " + status.getMessage(), Toast.LENGTH_SHORT).show();
                                 NOProcedureUI();
                             } else {
                                 parseDeviceList(json);
@@ -262,7 +261,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     });
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(MainActivity.this, "Failed to call get procedures : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,
+                    "Failed to call get procedures : " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -407,12 +407,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         TextView text = (TextView) dialog.findViewById(R.id.txt_rfid_tag);
         text.setText(message);
         TextView dialogButton =  dialog.findViewById(R.id.btn_ok);
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        dialogButton.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }
@@ -437,23 +432,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 }
             }, ProcedureObj.class, Double.class, Object.class);
 
-            hubConnection.onClosed(new OnClosedCallback() {
-                @Override
-                public void invoke(Exception exception) {
-                    try {
-                        hubConnection.stop();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.d("sr-data",hubConnection.getConnectionState().toString());
-                                connectWebSocket();
-                            }
-                        });
-                    } catch (Exception ex) {
-                        Log.d("sr-error",ex.getMessage());
-                    }
-                    ;
+            hubConnection.onClosed(exception -> {
+                try {
+                    hubConnection.stop();
+                    runOnUiThread(() -> {
+                        Log.d("sr-data",hubConnection.getConnectionState().toString());
+                        connectWebSocket();
+                    });
+                } catch (Exception ex) {
+                    Log.d("sr-error",ex.getMessage());
                 }
+                ;
             });
 
         } catch (Exception e) {
@@ -463,23 +452,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
 
     private void HubChecker(){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (hubConnection != null) {
-                    if (hubConnection.getConnectionState() != HubConnectionState.CONNECTED) {
-                        hubConnection.stop();
-                        try {
-                            connectWebSocket();
-                        } catch (Exception ex) {
-                            Log.e("sr-reconnect", ex.getMessage());
-                        }
-                        loadProcedureList(true);
+        new Handler().postDelayed(() -> {
+            if (hubConnection != null) {
+                if (hubConnection.getConnectionState() != HubConnectionState.CONNECTED) {
+                    hubConnection.stop();
+                    try {
+                        connectWebSocket();
+                    } catch (Exception ex) {
+                        Log.e("sr-reconnect", ex.getMessage());
                     }
-                    HubChecker();
+                    loadProcedureList(true);
                 }
-
+                HubChecker();
             }
+
         },5000);
     }
 
@@ -505,29 +491,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onInternetConnectivityChanged(boolean isConnected) {
-
         if (isConnected) {
             if (!iFirstTime) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (hubConnection != null) {
-                            if (hubConnection.getConnectionState() != HubConnectionState.CONNECTED) {
-                                hubConnection.stop();
-                            }
+                runOnUiThread(() -> {
+                    if (hubConnection != null) {
+                        if (hubConnection.getConnectionState() != HubConnectionState.CONNECTED) {
+                            hubConnection.stop();
                         }
-                        if (hubConnection != null) {
-                            try {
-                                closeConnection();
-                                connectWebSocket();
-                            } catch (Exception ex) {
-                                Log.e("WebSocket", ex.getMessage());
-                            }
-                        }
-                        loadProcedureList(true);
                     }
+                    if (hubConnection != null) {
+                        try {
+                            closeConnection();
+                            connectWebSocket();
+                        } catch (Exception ex) {
+                            Log.e("WebSocket", ex.getMessage());
+                        }
+                    }
+                    loadProcedureList(true);
                 });
             }
+            Toast.makeText(this, "Internet connected", Toast.LENGTH_SHORT).show();
+        }else {
+        //show a dialog and ask for wifi data and try to re-connect
+            Toast.makeText(this, "Internet disconnected, " +
+                    "looking to connect again now", Toast.LENGTH_SHORT).show();
         }
         if (iFirstTime) {
             iFirstTime = false;
@@ -653,35 +640,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     //// TEST
 
     private void testTag() {
-
         tag1 = findViewById(R.id.tag1);
         tag2 = findViewById(R.id.tag2);
         tag3 = findViewById(R.id.tag3);
-
-        tag1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                processIdentity("F9 C5 62 8E 60 80");
-            }
-        });
-        tag2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                processIdentity("F1 C5 62 8E 60 80");
-            }
-        });
-        tag3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                processIdentity("ED C5 62 8E 60 80");
-            }
-        });
+        tag1.setOnClickListener(v -> processIdentity("F9 C5 62 8E 60 80"));
+        tag2.setOnClickListener(v -> processIdentity("F1 C5 62 8E 60 80"));
+        tag3.setOnClickListener(v -> processIdentity("ED C5 62 8E 60 80"));
     }
 
 
     ///// bluetooth code
-
-
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -781,29 +749,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     // Displays dialog with information that phone doesn't support Bluetooth
     private void bluetoothNotSupported() {
         mDialog = DialogUtils.showAlert(getText(R.string.app_name), getText(R.string.bluetooth_not_supported), this,
-                getText(android.R.string.ok), null, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                }, null);
+                getText(android.R.string.ok), null,
+                (dialog, which) -> finish(), null);
     }
 
     // Displays dialog and request user to enable Bluetooth
     private void bluetoothEnable() {
         mDialog = DialogUtils.showAlert(this.getText(R.string.no_bluetooth_dialog_title_text), this
-                        .getText(R.string.no_bluetooth_dialog_text), this, getText(android.R.string.ok),
-                getText(android.R.string.cancel), new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        Intent intentBluetooth = new Intent();
-                        intentBluetooth.setAction(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
-                        MainActivity.this.startActivityForResult(intentBluetooth, BlUETOOTH_SETTINGS_REQUEST_CODE);
-                    }
-                }, new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        MainActivity.this.finish();
-                    }
-                });
+                        .getText(R.string.no_bluetooth_dialog_text),
+                this, getText(android.R.string.ok),
+                getText(android.R.string.cancel), (dialog, id) -> {
+                    Intent intentBluetooth = new Intent();
+                    intentBluetooth.setAction(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
+                    MainActivity.this.startActivityForResult(intentBluetooth,
+                            BlUETOOTH_SETTINGS_REQUEST_CODE);
+                }, (dialog, id) -> MainActivity.this.finish());
     }
 
     private void connectService() {

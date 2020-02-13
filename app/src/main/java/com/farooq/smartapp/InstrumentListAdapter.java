@@ -24,16 +24,13 @@ public class InstrumentListAdapter extends RecyclerView.Adapter<InstrumentListAd
     @Override
     public InstrumentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-
         View view = layoutInflater.inflate(R.layout.instrument_list_item, parent, false);
-
         return new InstrumentHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull InstrumentHolder instrumentHolder, int i) {
         final InstrumentObj instrument = instrumentsList.get(i);
-
         instrumentHolder.setName(instrument.getName());
         instrumentHolder.setModel(instrument.getModel());
     }
@@ -59,7 +56,6 @@ public class InstrumentListAdapter extends RecyclerView.Adapter<InstrumentListAd
 
         InstrumentHolder(View itemView) {
             super(itemView);
-
             txtName = itemView.findViewById(R.id.txtInstrumentName);
             txtModel = itemView.findViewById(R.id.txtInstrumentModel);
         }
