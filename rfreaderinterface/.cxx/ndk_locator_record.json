@@ -1,5 +1,5 @@
 {
-  "ndkFolder": "/Users/almujahidkhan/Library/Android/sdk/ndk/21.0.6113669",
+  "ndkFolder": "C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\ndk-bundle",
   "messages": [
     {
       "level": "INFO",
@@ -15,19 +15,15 @@
     },
     {
       "level": "INFO",
-      "message": "sdkFolder is /Users/almujahidkhan/Library/Android/sdk"
+      "message": "sdkFolder is C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk"
     },
     {
       "level": "INFO",
-      "message": "Considering /Users/almujahidkhan/Library/Android/sdk/ndk-bundle in SDK ndk-bundle folder"
+      "message": "Considering C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\ndk-bundle in SDK ndk-bundle folder"
     },
     {
       "level": "INFO",
-      "message": "Considering /Users/almujahidkhan/Library/Android/sdk/ndk/21.0.6113669 in SDK ndk folder"
-    },
-    {
-      "level": "INFO",
-      "message": "No user requested version, choosing /Users/almujahidkhan/Library/Android/sdk/ndk/21.0.6113669 which is version 21.0.6113669"
+      "message": "No user requested version, choosing C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\ndk-bundle which is version 19.2.5345600"
     }
   ]
 }

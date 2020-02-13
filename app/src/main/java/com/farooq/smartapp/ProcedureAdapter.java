@@ -33,7 +33,6 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
     @Override
     public InstrumentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-
         View view = layoutInflater.inflate(R.layout.item_scope, parent, false);
         return new InstrumentHolder(view);
     }
@@ -85,9 +84,7 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
 //                }
 //            }
 //        }
-
         notifyDataSetChanged();
-
         if (position > 0) {
             Collections.swap(mainActivity.mArrayProcedureList, position, 0);
             notifyItemMoved(position, 0);
@@ -122,7 +119,7 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
                     .setStepsViewIndicatorUnCompletedLineColor(mainActivity.getResources().getColor(R.color.colorPrimary))
                     .setStepViewComplectedTextColor(mainActivity.getResources().getColor(R.color.black_transfarent))
                     .setStepViewUnComplectedTextColor(mainActivity.getResources().getColor(R.color.clr_orange));
-            progressStepView.setStepViewTexts(new ArrayList<StepBean>());
+            progressStepView.setStepViewTexts(new ArrayList<>());
 
             return UpdateProgressViewWithSelectedScope(progressStepView, procedureObj);
         }

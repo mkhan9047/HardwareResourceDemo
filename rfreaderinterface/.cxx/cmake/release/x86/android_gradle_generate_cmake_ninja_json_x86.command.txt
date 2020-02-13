@@ -1,14 +1,14 @@
-Executable : /Users/almujahidkhan/Library/Android/sdk/cmake/3.6.4111459/bin/cmake
+Executable : C:\Users\CITY\AppData\Local\Android\Sdk\cmake\3.6.4111459\bin\cmake.exe
 arguments : 
--H/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/src/main
--B/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/.cxx/cmake/release/x86
+-HF:\RemoteWorks\codebase\Smart Tracking - Android\rfreaderinterface\src\main
+-BF:\RemoteWorks\codebase\Smart Tracking - Android\rfreaderinterface\.cxx\cmake\release\x86
 -DANDROID_ABI=x86
 -DANDROID_PLATFORM=android-18
--DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/build/intermediates/cmake/release/obj/x86
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=F:\RemoteWorks\codebase\Smart Tracking - Android\rfreaderinterface\build\intermediates\cmake\release\obj\x86
 -DCMAKE_BUILD_TYPE=Release
--DANDROID_NDK=/Users/almujahidkhan/Library/Android/sdk/ndk/21.0.6113669
--DCMAKE_TOOLCHAIN_FILE=/Users/almujahidkhan/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake
--DCMAKE_MAKE_PROGRAM=/Users/almujahidkhan/Library/Android/sdk/cmake/3.6.4111459/bin/ninja
+-DANDROID_NDK=C:\Users\CITY\AppData\Local\Android\Sdk\ndk-bundle
+-DCMAKE_TOOLCHAIN_FILE=C:\Users\CITY\AppData\Local\Android\Sdk\ndk-bundle\build\cmake\android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=C:\Users\CITY\AppData\Local\Android\Sdk\cmake\3.6.4111459\bin\ninja.exe
 -GAndroid Gradle - Ninja
 jvmArgs : 
 

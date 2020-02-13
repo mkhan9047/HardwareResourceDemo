@@ -11,9 +11,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -53,6 +55,7 @@ import com.microsoft.signalr.Action3;
 import com.microsoft.signalr.HubConnectionBuilder;
 import com.microsoft.signalr.HubConnectionState;
 import com.microsoft.signalr.OnClosedCallback;
+import com.thanosfisherman.wifiutils.WifiUtils;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
 
@@ -205,16 +208,42 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment_Container.setVisibility(View.VISIBLE);
+            /*    fragment_Container.setVisibility(View.VISIBLE);
                 InstrumentFragment newFragment = new InstrumentFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
-
+*/
+                WifiUtils.withContext(getApplicationContext()).scanWifi(MainActivity.this::getScanResults).start();
+                WifiUtils.enableLog(true);
+                WifiUtils.enableLog(true);
             }
         });
 
+    }
+
+    private void getScanResults(@NonNull final List<ScanResult> results) {
+        for (ScanResult result : results) {
+            if (result.SSID.contains("FW-New")) {
+                connectToSumon(result.SSID);
+            }
+        }
+    }
+
+    private void connectToSumon(String ss) {
+        WifiUtils.withContext(getApplicationContext())
+                .connectWith(ss, "6462858736")
+                .onConnectionResult(this::checkResult)
+                .start();
+    }
+
+    private void checkResult(boolean isSuccess) {
+        if (isSuccess)
+            Toast.makeText(MainActivity.this, "CONNECTED Fw-New!", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(MainActivity.this, "COULDN'T CONNECT!",
+                    Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -398,7 +427,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     ////// websocket code
 
 
-    private void showRFIDDialog(String message){
+    private void showRFIDDialog(String message) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -406,18 +435,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         TextView text = (TextView) dialog.findViewById(R.id.txt_rfid_tag);
         text.setText(message);
-        TextView dialogButton =  dialog.findViewById(R.id.btn_ok);
+        TextView dialogButton = dialog.findViewById(R.id.btn_ok);
         dialogButton.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }
 
 
-
     private void connectWebSocket() {
         try {
             hubConnection.start().blockingAwait();
-            Log.d("sr-data",hubConnection.getConnectionState().toString());
+            Log.d("sr-data", hubConnection.getConnectionState().toString());
             hubConnection.on("ProcedureChanged", new Action3<ProcedureObj, Double, Object>() {
                 @Override
                 public void invoke(ProcedureObj procedureObj, Double stateChange, Object param3) {
@@ -436,22 +464,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 try {
                     hubConnection.stop();
                     runOnUiThread(() -> {
-                        Log.d("sr-data",hubConnection.getConnectionState().toString());
+                        Log.d("sr-data", hubConnection.getConnectionState().toString());
                         connectWebSocket();
                     });
                 } catch (Exception ex) {
-                    Log.d("sr-error",ex.getMessage());
+                    Log.d("sr-error", ex.getMessage());
                 }
                 ;
             });
 
         } catch (Exception e) {
-            Log.d("sr-error2",e.getMessage());
+            Log.d("sr-error2", e.getMessage());
         }
     }
 
 
-    private void HubChecker(){
+    private void HubChecker() {
         new Handler().postDelayed(() -> {
             if (hubConnection != null) {
                 if (hubConnection.getConnectionState() != HubConnectionState.CONNECTED) {
@@ -466,7 +494,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 HubChecker();
             }
 
-        },5000);
+        }, 5000);
     }
 
     @Override
@@ -511,8 +539,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 });
             }
             Toast.makeText(this, "Internet connected", Toast.LENGTH_SHORT).show();
-        }else {
-        //show a dialog and ask for wifi data and try to re-connect
+        } else {
+            //show a dialog and ask for wifi data and try to re-connect
             Toast.makeText(this, "Internet disconnected, " +
                     "looking to connect again now", Toast.LENGTH_SHORT).show();
         }

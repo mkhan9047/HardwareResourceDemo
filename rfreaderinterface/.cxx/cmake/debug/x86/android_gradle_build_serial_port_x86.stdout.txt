@@ -1,1 +1,2 @@
-ninja: no work to do.
+[1/2] Building C object CMakeFiles/serial_port.dir/cpp/SerialPort.c.o
+[2/2] Linking C shared library "F:\RemoteWorks\codebase\Smart Tracking - Android\rfreaderinterface\build\intermediates\cmake\debug\obj\x86\libserial_port.so"

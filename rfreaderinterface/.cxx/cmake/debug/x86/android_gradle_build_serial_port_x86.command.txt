@@ -1,7 +1,7 @@
-Executable : /Users/almujahidkhan/Library/Android/sdk/cmake/3.6.4111459/bin/cmake
+Executable : C:\Users\CITY\AppData\Local\Android\Sdk\cmake\3.6.4111459\bin\cmake.exe
 arguments : 
 --build
-/Ocean7 Project/Smart Tracking - Android/rfreaderinterface/.cxx/cmake/debug/x86
+F:\RemoteWorks\codebase\Smart Tracking - Android\rfreaderinterface\.cxx\cmake\debug\x86
 --target
 serial_port
 jvmArgs : 
