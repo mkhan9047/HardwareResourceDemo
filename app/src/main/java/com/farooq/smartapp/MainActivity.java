@@ -1,13 +1,11 @@
 package com.farooq.smartapp;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -41,8 +39,6 @@ import com.atp.rfreaderinterface.RFReader;
 import com.crashlytics.android.Crashlytics;
 import com.farooq.smartapp.datamodel.Device;
 import com.farooq.smartapp.datamodel.Engine;
-import com.farooq.smartapp.dotnetcoresignalrclientjava.HubEventListener;
-import com.farooq.smartapp.dotnetcoresignalrclientjava.HubMessage;
 import com.farooq.smartapp.fragment.InstrumentFragment;
 import com.farooq.smartapp.model.ProcedureObj;
 import com.farooq.smartapp.model.ProcedureObj.ChangeType;
@@ -51,11 +47,9 @@ import com.farooq.smartapp.server.WebServices;
 import com.farooq.smartapp.utils.DialogUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.microsoft.signalr.Action;
 import com.microsoft.signalr.Action3;
 import com.microsoft.signalr.HubConnectionBuilder;
 import com.microsoft.signalr.HubConnectionState;
-import com.microsoft.signalr.OnClosedCallback;
 import com.thanosfisherman.wifiutils.WifiUtils;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
@@ -225,13 +219,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void getScanResults(@NonNull final List<ScanResult> results) {
         for (ScanResult result : results) {
             if (result.SSID.contains(storage.getWifiName())) {
-                connectToSumon(result.SSID);
+                connectToWifi(result.SSID);
                 break;
             }
         }
     }
 
-    private void connectToSumon(String ss) {
+    private void connectToWifi(String ss) {
         WifiUtils.withContext(getApplicationContext())
                 .connectWith(ss.trim(), storage.getPassword())
                 .onConnectionResult(this::checkResult)
@@ -267,6 +261,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     storage.saveWifiName(wifiName.getText().toString());
                     storage.savePassword(password.getText().toString());
                     dialog.dismiss();
+                    WifiUtils.withContext(getApplicationContext()).scanWifi(
+                            MainActivity.this::getScanResults).start();
                 } else {
                     Toast.makeText(this, "Password can't be less than 6 character", Toast.LENGTH_SHORT).show();
                 }
