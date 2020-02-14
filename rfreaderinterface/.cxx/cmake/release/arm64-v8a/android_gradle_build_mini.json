@@ -1,16 +1,16 @@
 {
   "buildFiles": [
-    "C:\\Smart-tracking-v1.0\\source code\\Smart%20Tracking%20-%20Android\\rfreaderinterface\\src\\main\\CMakeLists.txt"
+    "F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\src\\main\\CMakeLists.txt"
   ],
   "cleanCommands": [
-    "C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"C:\\Smart-tracking-v1.0\\source code\\Smart%20Tracking%20-%20Android\\rfreaderinterface\\.cxx\\cmake\\release\\arm64-v8a\" --target clean"
+    "C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\.cxx\\cmake\\release\\arm64-v8a\" --target clean"
   ],
   "libraries": {
     "serial_port-Release-arm64-v8a": {
       "artifactName": "serial_port",
-      "buildCommand": "C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"C:\\Smart-tracking-v1.0\\source code\\Smart%20Tracking%20-%20Android\\rfreaderinterface\\.cxx\\cmake\\release\\arm64-v8a\" --target serial_port",
+      "buildCommand": "C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\.cxx\\cmake\\release\\arm64-v8a\" --target serial_port",
       "abi": "arm64-v8a",
-      "output": "C:\\Smart-tracking-v1.0\\source code\\Smart%20Tracking%20-%20Android\\rfreaderinterface\\build\\intermediates\\cmake\\release\\obj\\arm64-v8a\\libserial_port.so"
+      "output": "F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\build\\intermediates\\cmake\\release\\obj\\arm64-v8a\\libserial_port.so"
     }
   }
 }
