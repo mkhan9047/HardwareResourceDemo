@@ -253,9 +253,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         EditText password = dialog.findViewById(R.id.etPassword);
         TextView cancel = dialog.findViewById(R.id.txt_cancel);
         TextView save = dialog.findViewById(R.id.txt_save);
-        cancel.setOnClickListener(v -> {
-            dialog.dismiss();
-        });
+        cancel.setOnClickListener(v -> dialog.dismiss());
         save.setOnClickListener(v -> {
             if (wifiName.getText().toString().length() != 0) {
                 if (password.getText().toString().length() >= 6) {

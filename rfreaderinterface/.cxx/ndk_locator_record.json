@@ -1,5 +1,5 @@
 {
-  "ndkFolder": "C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\ndk-bundle",
+  "ndkFolder": "C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\ndk-bundle",
   "messages": [
     {
       "level": "INFO",
@@ -15,15 +15,15 @@
     },
     {
       "level": "INFO",
-      "message": "sdkFolder is C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk"
+      "message": "sdkFolder is C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk"
     },
     {
       "level": "INFO",
-      "message": "Considering C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\ndk-bundle in SDK ndk-bundle folder"
+      "message": "Considering C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\ndk-bundle in SDK ndk-bundle folder"
     },
     {
       "level": "INFO",
-      "message": "No user requested version, choosing C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\ndk-bundle which is version 19.0.5232133"
+      "message": "No user requested version, choosing C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\ndk-bundle which is version 19.2.5345600"
     }
   ]
 }

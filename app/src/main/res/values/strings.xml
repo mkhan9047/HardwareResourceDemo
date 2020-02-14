@@ -46,4 +46,5 @@
     <string name="password">Password</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="change_wifi_credential">Change Wifi Credential</string>
 </resources>
