@@ -2,12 +2,12 @@
 {
 	"buildFiles" : 
 	[
-		"F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/src/main/CMakeLists.txt"
+		"C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/src/main/CMakeLists.txt"
 	],
 	"cFileExtensions" : [ "c" ],
 	"cleanCommands" : 
 	[
-		"C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\.cxx\\cmake\\debug\\x86_64\" --target clean"
+		"C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"C:\\Smart-tracking-v1.0\\source code\\Smart%20Tracking%20-%20Android\\rfreaderinterface\\.cxx\\cmake\\debug\\x86_64\" --target clean"
 	],
 	"libraries" : 
 	{
@@ -15,27 +15,27 @@
 		{
 			"abi" : "x86_64",
 			"artifactName" : "serial_port",
-			"buildCommand" : "C:\\Users\\CITY\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\.cxx\\cmake\\debug\\x86_64\" --target serial_port",
+			"buildCommand" : "C:\\Users\\Farooq\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build \"C:\\Smart-tracking-v1.0\\source code\\Smart%20Tracking%20-%20Android\\rfreaderinterface\\.cxx\\cmake\\debug\\x86_64\" --target serial_port",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/CITY/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/CITY/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dserial_port_EXPORTS -I\"F:\\RemoteWorks\\codebase\\Smart Tracking - Android\\rfreaderinterface\\src\\main\\..\\..\\include\"  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC      -c ",
-					"src" : "F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/src/main/cpp/SerialPort.c",
-					"workingDirectory" : "F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/.cxx/cmake/debug/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=C:/Users/Farooq/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 -Dserial_port_EXPORTS -I\"C:\\Smart-tracking-v1.0\\source code\\Smart%20Tracking%20-%20Android\\rfreaderinterface\\src\\main\\..\\..\\include\"  --sysroot C:/Users/Farooq/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC      -c ",
+					"src" : "C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/src/main/cpp/SerialPort.c",
+					"workingDirectory" : "C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/.cxx/cmake/debug/x86_64"
 				}
 			],
-			"output" : "F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/build/intermediates/cmake/debug/obj/x86_64/libserial_port.so",
-			"toolchain" : "4292313447"
+			"output" : "C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/build/intermediates/cmake/debug/obj/x86_64/libserial_port.so",
+			"toolchain" : "966741785"
 		}
 	},
 	"toolchains" : 
 	{
-		"4292313447" : 
+		"966741785" : 
 		{
-			"cCompilerExecutable" : "C:/Users/CITY/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
-			"cppCompilerExecutable" : "C:/Users/CITY/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+			"cCompilerExecutable" : "C:/Users/Farooq/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "C:/Users/Farooq/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
 		}
 	}
 }
