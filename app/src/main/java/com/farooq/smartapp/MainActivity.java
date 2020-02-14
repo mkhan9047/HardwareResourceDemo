@@ -208,15 +208,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            /*    fragment_Container.setVisibility(View.VISIBLE);
+                fragment_Container.setVisibility(View.VISIBLE);
                 InstrumentFragment newFragment = new InstrumentFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
-*/
-                WifiUtils.withContext(getApplicationContext()).scanWifi(MainActivity.this::getScanResults).start();
-                WifiUtils.enableLog(true);
+
             }
         });
 
@@ -224,22 +222,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void getScanResults(@NonNull final List<ScanResult> results) {
         for (ScanResult result : results) {
-            if (result.SSID.contains("FW-New")) {
+            if (result.SSID.contains("Ruhof Guest")) {
                 connectToSumon(result.SSID);
+                break;
             }
         }
     }
 
     private void connectToSumon(String ss) {
         WifiUtils.withContext(getApplicationContext())
-                .connectWith(ss, "6462858736")
+                .connectWith(ss.trim(), "Ruh0ff$$!")
                 .onConnectionResult(this::checkResult)
                 .start();
     }
 
     private void checkResult(boolean isSuccess) {
         if (isSuccess)
-            Toast.makeText(MainActivity.this, "CONNECTED Fw-New!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "CONNECTED Ruhof!", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(MainActivity.this, "COULDN'T CONNECT!",
                     Toast.LENGTH_SHORT).show();
@@ -540,8 +539,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             Toast.makeText(this, "Internet connected", Toast.LENGTH_SHORT).show();
         } else {
             //show a dialog and ask for wifi data and try to re-connect
-            Toast.makeText(this, "Internet disconnected, " +
-                    "looking to connect again now", Toast.LENGTH_SHORT).show();
+            WifiUtils.withContext(getApplicationContext()).scanWifi(MainActivity.this::getScanResults).start();
+           // WifiUtils.enableLog(true);
         }
         if (iFirstTime) {
             iFirstTime = false;
