@@ -229,6 +229,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             }
         }
+
     }
 
     private void connectToSumon(String ss) {
@@ -267,6 +268,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     storage.saveWifiName(wifiName.getText().toString());
                     storage.savePassword(password.getText().toString());
                     dialog.dismiss();
+                    WifiUtils.withContext(getApplicationContext()).scanWifi(
+                            MainActivity.this::getScanResults).start();
                 } else {
                     Toast.makeText(this, "Password can't be less than 6 character", Toast.LENGTH_SHORT).show();
                 }
