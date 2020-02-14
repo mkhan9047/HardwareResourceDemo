@@ -27,6 +27,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -99,6 +100,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private InternetAvailabilityChecker mInternetAvailabilityChecker;
     private ImageView setting;
+    private Storage storage;
     private boolean iFirstTime;
     private RelativeLayout relPulltoInst;
     //private String authHeader = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Ijc5NzhjMjI3LWViMGItNGMwOS1iYWEyLTEwYmE0MjI4YWE4OSIsImNlcnRzZXJpYWxudW1iZXIiOiJtYWNfYWRkcmVzc19vZl9waG9uZSIsInNlY3VyaXR5U3RhbXAiOiJlMTAxOWNiYy1jMjM2LTQ0ZTEtYjdjYy0zNjMxYTYxYzMxYmIiLCJuYmYiOjE1MDYyODQ4NzMsImV4cCI6NDY2MTk1ODQ3MywiaWF0IjoxNTA2Mjg0ODczLCJpc3MiOiJCbGVuZCIsImF1ZCI6IkJsZW5kIn0.QUh241IB7g3axLcfmKR2899Kt1xrTInwT6BBszf6aP4";
@@ -123,6 +125,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         } catch (Exception ex) {
         }
 
+        storage = new Storage(this);
 
         findById();
         try {
@@ -214,7 +217,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
-
             }
         });
 
@@ -222,7 +224,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void getScanResults(@NonNull final List<ScanResult> results) {
         for (ScanResult result : results) {
-            if (result.SSID.contains("Ruhof Guest")) {
+            if (result.SSID.contains(storage.getWifiName())) {
                 connectToSumon(result.SSID);
                 break;
             }
@@ -231,17 +233,48 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void connectToSumon(String ss) {
         WifiUtils.withContext(getApplicationContext())
-                .connectWith(ss.trim(), "Ruh0ff$$!")
+                .connectWith(ss.trim(), storage.getPassword())
                 .onConnectionResult(this::checkResult)
                 .start();
     }
 
     private void checkResult(boolean isSuccess) {
         if (isSuccess)
-            Toast.makeText(MainActivity.this, "CONNECTED Ruhof!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "CONNECTED " + storage.getWifiName(), Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(MainActivity.this, "COULDN'T CONNECT!",
                     Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void showWifiSetupDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.layout_wifi_info_dialog);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        //views of the dialog
+        EditText wifiName = dialog.findViewById(R.id.edit_text_wifi_name);
+        EditText password = dialog.findViewById(R.id.etPassword);
+        TextView cancel = dialog.findViewById(R.id.txt_cancel);
+        TextView save = dialog.findViewById(R.id.txt_save);
+        cancel.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+        save.setOnClickListener(v -> {
+            if (wifiName.getText().toString().length() != 0) {
+                if (password.getText().toString().length() >= 6) {
+                    storage.saveWifiName(wifiName.getText().toString());
+                    storage.savePassword(password.getText().toString());
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(this, "Password can't be less than 6 character", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Name can't be empty!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show();
     }
 
     @Override
@@ -539,8 +572,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             Toast.makeText(this, "Internet connected", Toast.LENGTH_SHORT).show();
         } else {
             //show a dialog and ask for wifi data and try to re-connect
-            WifiUtils.withContext(getApplicationContext()).scanWifi(MainActivity.this::getScanResults).start();
-           // WifiUtils.enableLog(true);
+            if (storage.getPassword() != null && storage.getWifiName() != null) {
+                WifiUtils.withContext(getApplicationContext()).scanWifi(
+                        MainActivity.this::getScanResults).start();
+            } else {
+                showWifiSetupDialog();
+            }
+            // WifiUtils.enableLog(true);
         }
         if (iFirstTime) {
             iFirstTime = false;

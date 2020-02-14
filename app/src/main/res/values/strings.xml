@@ -41,4 +41,9 @@
     <string name="txt_organization">Organization</string>
     <string name="txt_department">Department</string>
     <string name="txt_facility">Facility</string>
+    <string name="preferred_wifi_setup">Preferred Wifi Setup</string>
+    <string name="wifi_name">Wifi Name</string>
+    <string name="password">Password</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 </resources>
