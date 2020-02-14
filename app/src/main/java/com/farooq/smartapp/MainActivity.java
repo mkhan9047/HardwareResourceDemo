@@ -217,7 +217,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 */
                 WifiUtils.withContext(getApplicationContext()).scanWifi(MainActivity.this::getScanResults).start();
                 WifiUtils.enableLog(true);
-                WifiUtils.enableLog(true);
             }
         });
 
