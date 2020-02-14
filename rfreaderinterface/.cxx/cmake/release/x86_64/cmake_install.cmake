@@ -1,4 +1,4 @@
-# Install script for directory: F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/src/main
+# Install script for directory: C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/src/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "F:/RemoteWorks/codebase/Smart Tracking - Android/rfreaderinterface/.cxx/cmake/release/x86_64/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/.cxx/cmake/release/x86_64/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
