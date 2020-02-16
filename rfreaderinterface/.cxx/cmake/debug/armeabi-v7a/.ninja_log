@@ -1,0 +1,9 @@
+# ninja log v5
+0	607	0	CMakeFiles/serial_port.dir/cpp/SerialPort.c.o	c4d9800cbc410072
+609	833	0	C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/build/intermediates/cmake/debug/obj/armeabi-v7a/libserial_port.so	ee1cfb070db1f270
+2	610	0	CMakeFiles/serial_port.dir/cpp/SerialPort.c.o	c4d9800cbc410072
+610	781	0	C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/build/intermediates/cmake/debug/obj/armeabi-v7a/libserial_port.so	ee1cfb070db1f270
+3	231	0	CMakeFiles/serial_port.dir/cpp/SerialPort.c.o	c4d9800cbc410072
+231	371	0	C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/build/intermediates/cmake/debug/obj/armeabi-v7a/libserial_port.so	ee1cfb070db1f270
+2	122	0	CMakeFiles/serial_port.dir/cpp/SerialPort.c.o	c4d9800cbc410072
+122	194	0	C:/Smart-tracking-v1.0/source code/Smart%20Tracking%20-%20Android/rfreaderinterface/build/intermediates/cmake/debug/obj/armeabi-v7a/libserial_port.so	ee1cfb070db1f270
