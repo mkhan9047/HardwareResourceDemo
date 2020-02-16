@@ -108,7 +108,6 @@ public class DeviceRegisterActivity extends BaseActivity {
     }
 
     private void registerDeviceProcess() {
-
         final String tabletName = txtTabletName.getText().toString();
         if (tabletName.trim().length() <= 0) {
             txtTabletName.setError("Please enter device name first.");
@@ -130,7 +129,10 @@ public class DeviceRegisterActivity extends BaseActivity {
                 hideProgress();
                 try {
                     if (json == null) {
-                        Toast.makeText(DeviceRegisterActivity.this, "Device register failed" + (status != null ? (" : " + status.getMessage() + ".") : "."), Toast.LENGTH_LONG).show();
+                        Toast.makeText(DeviceRegisterActivity.this,
+                                "Device register failed"
+                                        + (status != null ?
+                                        (" : " + status.getMessage() + ".") : "."), Toast.LENGTH_LONG).show();
                     } else {
                         Log.i("DeviceRegisterActivity", json);
                         JSONObject jsonObject = new JSONObject(json);

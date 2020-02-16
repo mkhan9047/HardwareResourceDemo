@@ -9,12 +9,21 @@ public class ProcedureObj {
     private String id;
     private String instrumentName;
     private String displayName;
+    private String finished;
     private String currentStepStepDefinitionName;
     private String currentStepId;
     private ArrayList<StepItem> steps = new ArrayList<>();
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public String getFinished() {
+        return finished;
+    }
+
+    public void setFinished(String finished) {
+        this.finished = finished;
     }
 
     public void setDisplayName(String displayName) {

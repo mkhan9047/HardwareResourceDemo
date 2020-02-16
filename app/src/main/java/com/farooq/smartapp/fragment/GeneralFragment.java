@@ -60,6 +60,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
     private Dialog pdProgress;
     private CardView wifiInfo;
     Storage storage;
+
     public GeneralFragment() {
         // Required empty public constructor
     }
@@ -90,9 +91,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
                 GeneralFragment.this.getActivity(), new InstrumentFragment()));
         back.setOnClickListener(v -> getActivity().onBackPressed());
 
-        wifiInfo.setOnClickListener(v -> {
-            showWifiSetupDialog();
-        });
+        wifiInfo.setOnClickListener(v -> showWifiSetupDialog());
 
         setTabletInfo(Constants.getTablet(getActivity()));
 
@@ -122,7 +121,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
                     storage.savePassword(password.getText().toString());
                     dialog.dismiss();
                     WifiUtils.withContext(getActivity().getApplicationContext()).scanWifi(
-                           this::getScanResults).start();
+                            this::getScanResults).start();
                     Toast.makeText(getActivity(), "Wifi info changed successfully!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), "Password can't be less than 6 character!", Toast.LENGTH_SHORT).show();

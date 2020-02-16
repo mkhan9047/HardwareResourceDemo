@@ -142,7 +142,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         loadProcedureList(true);
         connectWebSocket();
         //checkBluetoothAdapter();
-
         initRFIDReader();
 
         InternetAvailabilityChecker.init(this);
@@ -185,8 +184,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void initAdapter() {
         mAdapter = new ProcedureAdapter(this);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false);
         lstProcedure.setLayoutManager(mLayoutManager);
         lstProcedure.setItemAnimator(new DefaultItemAnimator());
         lstProcedure.setAdapter(mAdapter);
@@ -194,24 +193,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void initClick() {
         findViewById(R.id.btnStart).setOnClickListener(this);
-        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                pullToRefresh.setRefreshing(true);
-                loadProcedureList(true);
-            }
+        pullToRefresh.setOnRefreshListener(() -> {
+            pullToRefresh.setRefreshing(true);
+            loadProcedureList(true);
         });
 
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragment_Container.setVisibility(View.VISIBLE);
-                InstrumentFragment newFragment = new InstrumentFragment();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
+        setting.setOnClickListener(v -> {
+            fragment_Container.setVisibility(View.VISIBLE);
+            InstrumentFragment newFragment = new InstrumentFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         });
 
     }
@@ -342,10 +335,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             if (mArrayProcedureList == null) {
                 mArrayProcedureList = new ArrayList<>();
             }
+            //code change by Mujahid at 2-16-2020 for removing finished procedures
+            for (Iterator<ProcedureObj> iterator = mArrayProcedureList.iterator();
+                 iterator.hasNext(); ) {
+                ProcedureObj value = iterator.next();
+                if (value.getFinished() != null) {
+                    iterator.remove();
+                }
+            }
             mAdapter.refresh();
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(MainActivity.this, "Failed to parse procedures response :" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,
+                    "Failed to parse procedures response :"
+                            + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         NOProcedureUI();
     }
@@ -379,6 +382,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                             mArrayProcedureList.set(i, updatedProcedureObj);
                         }
                         mAdapter.procedureMoveToTop(i, updatedProcedureObj);
+                    }
+                    //code change by Mujahid at 2-16-2020 for removing finished procedures
+                    if (mArrayProcedureList.get(i).getFinished() != null) {
+                        mArrayProcedureList.remove(i);
+                        mAdapter.procedureRemove(i);
                     }
                     break;
                 }
@@ -585,12 +593,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     /////// RFID
 
     private void scanRfid(String scanTag) {
-
         if (isInvalidTag(scanTag)) {
             ShowMessage(scanTag);
             return;
         }
-
         boolean isScanTagForNewIntrument = false;
         showRFIDDialog(scanTag);
         if (fragment_Container.getVisibility() == View.VISIBLE) {
@@ -657,11 +663,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void processIdentity(String scanedrfid) {
-
         if (!checkInternetConnection(this)) {
             return;
         }
-
         showProgress();
         WebServices.getInstance().InstrumentProcessIdentity(MainActivity.this, scanedrfid, new AjaxCallback<String>() {
             public void callback(String url, String json, AjaxStatus status) {
@@ -724,7 +728,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             Global.mBluetoothLeService = null;
-            Toast.makeText(MainActivity.this, "Test : Bluetooth Disconnected...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,
+                    "Test : Bluetooth Disconnected...",
+                    Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -807,7 +813,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     // Displays dialog with information that phone doesn't support Bluetooth
     private void bluetoothNotSupported() {
-        mDialog = DialogUtils.showAlert(getText(R.string.app_name), getText(R.string.bluetooth_not_supported), this,
+        mDialog = DialogUtils.showAlert(getText(R.string.app_name),
+                getText(R.string.bluetooth_not_supported), this,
                 getText(android.R.string.ok), null,
                 (dialog, which) -> finish(), null);
     }

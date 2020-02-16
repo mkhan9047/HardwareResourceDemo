@@ -30,6 +30,7 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
         this.mainActivity = activity;
     }
 
+
     @Override
     public InstrumentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -45,7 +46,8 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
             instrumentHolder.setName(procedureObj.getInstrumentName());
         } catch (Exception ignored) {
         }
-        instrumentHolder.setSkippedBackGround(instrumentHolder.setStepViewName(procedureObj));
+        instrumentHolder.setSkippedBackGround(instrumentHolder
+                .setStepViewName(procedureObj));
     }
 
     @Override
@@ -104,7 +106,7 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
             txtName = itemView.findViewById(R.id.txtScopeName);
             progressStepView = itemView.findViewWithTag(R.id.stepview);
             card_view_procedure = itemView.findViewById(R.id.card_view_procedure);
-           // txtDisplayName = itemView.findViewById(R.id.txt_display_name);
+            // txtDisplayName = itemView.findViewById(R.id.txt_display_name);
         }
 
         public void setName(String name) {
@@ -120,7 +122,6 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
                     .setStepViewComplectedTextColor(mainActivity.getResources().getColor(R.color.black_transfarent))
                     .setStepViewUnComplectedTextColor(mainActivity.getResources().getColor(R.color.clr_orange));
             progressStepView.setStepViewTexts(new ArrayList<>());
-
             return UpdateProgressViewWithSelectedScope(progressStepView, procedureObj);
         }
 
@@ -128,7 +129,7 @@ public class ProcedureAdapter extends RecyclerView.Adapter<ProcedureAdapter.Inst
         public void setSkippedBackGround(boolean isStepView) {
             if (isStepView) {
                 //this.itemView.setBackground(mainActivity.getDrawable(R.drawable.skipedbg));
-               card_view_procedure.setStrokeColor(mainActivity.getResources().getColor(R.color.clr_red));
+                card_view_procedure.setStrokeColor(mainActivity.getResources().getColor(R.color.clr_red));
             } else {
                 //this.itemView.setBackgroundColor(Color.TRANSPARENT);
                 card_view_procedure.setStrokeColor(mainActivity.getResources().getColor(R.color.clr_white));
