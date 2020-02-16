@@ -1,5 +1,6 @@
 package com.farooq.smartapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -72,7 +73,6 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_general, container, false);
-
         address = view.findViewById(R.id.edit_text_server_url);
         send = view.findViewById(R.id.img_btn_go);
         instrument = view.findViewById(R.id.btn_instrument);
@@ -82,39 +82,23 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
         device_mac = view.findViewById(R.id.txt_mac_address_value);
         back = view.findViewById(R.id.btn_back);
 
-
         storage = new Storage(getActivity());
         send.setOnClickListener(this);
         address.setText(GetServerAddress(getActivity()));
 
-        instrument.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setFragment((AppCompatActivity) GeneralFragment.this.getActivity(), new InstrumentFragment());
-            }
-        });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
+        instrument.setOnClickListener(v -> setFragment((AppCompatActivity)
+                GeneralFragment.this.getActivity(), new InstrumentFragment()));
+        back.setOnClickListener(v -> getActivity().onBackPressed());
 
         wifiInfo.setOnClickListener(v -> {
             showWifiSetupDialog();
         });
 
-
-
         setTabletInfo(Constants.getTablet(getActivity()));
 
         if (!IS_TESTING) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    GetTabletInfo();
-                }
-            }, 1000);
+            new Handler().postDelayed(() -> GetTabletInfo(),
+                    1000);
         }
         return view;
     }
@@ -141,15 +125,18 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
                            this::getScanResults).start();
                     Toast.makeText(getActivity(), "Wifi info changed successfully!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity(), "Password can't be less than 6 character", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Password can't be less than 6 character!", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(getActivity(), "Name can't be empty!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),
+                        "Name can't be empty!",
+                        Toast.LENGTH_SHORT).show();
             }
         });
         dialog.show();
     }
 
+    @SuppressLint("SetTextI18n")
     private void setTabletInfo(Tablet tablet) {
         device_name.setText("Name: " + tablet.getDisplayName());
         device_mac.setText("Mac: " + tablet.getMacAddress());
@@ -174,7 +161,10 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
 
     private void checkResult(boolean isSuccess) {
         if (isSuccess)
-            Toast.makeText(getActivity(), "CONNECTED " + storage.getWifiName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "CONNECTED "
+                            +
+                            storage.getWifiName(),
+                    Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(getActivity(), "COULDN'T CONNECT!",
                     Toast.LENGTH_SHORT).show();
@@ -189,7 +179,8 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
                     hideProgress();
                     try {
                         if (json == null) {
-                            Toast.makeText(getActivity(), "Fetching Device denial failed." + (status != null ? (" : " + status.getMessage() + ".") : "."), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Fetching Device denial failed." + (status != null ?
+                                    (" : " + status.getMessage() + ".") : "."), Toast.LENGTH_LONG).show();
                         } else {
                             Log.i("fetchingDevices", json);
                             parseTabletData(json);
@@ -198,7 +189,6 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
                         Toast.makeText(getActivity(), "Fetching Devices failed" +
                                 ", Please check internet and try again", Toast.LENGTH_LONG).show();
                     }
-
                 }
             });
         } catch (Exception ex) {
