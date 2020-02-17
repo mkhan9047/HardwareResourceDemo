@@ -1,7 +1,7 @@
-Executable : C:\Users\CITY\AppData\Local\Android\Sdk\cmake\3.6.4111459\bin\cmake.exe
+Executable : C:\Users\Farooq\AppData\Local\Android\Sdk\cmake\3.6.4111459\bin\cmake.exe
 arguments : 
 --build
-F:\RemoteWorks\codebase\Smart Tracking - Android\rfreaderinterface\.cxx\cmake\debug\armeabi-v7a
+C:\Smart-tracking-v1.0\source code\Smart%20Tracking%20-%20Android\rfreaderinterface\.cxx\cmake\debug\armeabi-v7a
 --target
 serial_port
 jvmArgs : 

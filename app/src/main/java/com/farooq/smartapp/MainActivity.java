@@ -6,10 +6,15 @@ import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -19,6 +24,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -50,6 +56,7 @@ import com.google.gson.reflect.TypeToken;
 import com.microsoft.signalr.Action3;
 import com.microsoft.signalr.HubConnectionBuilder;
 import com.microsoft.signalr.HubConnectionState;
+import com.thanosfisherman.wifiutils.WifiConnectorBuilder;
 import com.thanosfisherman.wifiutils.WifiUtils;
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker;
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener;
@@ -155,6 +162,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             teslayfortag.setVisibility(View.GONE);
         }
         HubChecker();
+        statusCheck();
     }
 
     @Override
@@ -211,7 +219,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void getScanResults(@NonNull final List<ScanResult> results) {
         for (ScanResult result : results) {
-            if (result.SSID.contains(storage.getWifiName())) {
+            if (result.SSID.equals(storage.getWifiName())) {
                 connectToWifi(result.SSID);
                 break;
             }
@@ -221,19 +229,49 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void connectToWifi(String ss) {
         WifiUtils.withContext(getApplicationContext())
-                .connectWith(ss.trim(), storage.getPassword())
+                .connectWith(ss, storage.getPassword())
                 .onConnectionResult(this::checkResult)
                 .start();
+
     }
 
     private void checkResult(boolean isSuccess) {
-        if (isSuccess)
+        if (isSuccess){
             Toast.makeText(MainActivity.this, "CONNECTED " + storage.getWifiName(), Toast.LENGTH_SHORT).show();
-        else
+            WifiConnectorBuilder.WifiUtilsBuilder builder = WifiUtils.withContext(getApplicationContext());
+            builder.cancelAutoConnect();
+        }else{
             Toast.makeText(MainActivity.this, "COULDN'T CONNECT!",
                     Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
+    public void statusCheck() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+        }
+    }
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, turn on to get auto wifi connect!")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     private void showWifiSetupDialog() {
         final Dialog dialog = new Dialog(this);
@@ -284,6 +322,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 if (pullToRefresh.isRefreshing()) {
                     pullToRefresh.setRefreshing(false);
                 }
+                WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                if (wifiManager != null && wifiManager.isWifiEnabled()) {
+                    // wifi is enabled
+                    if (storage.getPassword() != null && storage.getWifiName() != null) {
+                       WifiUtils.withContext(getApplicationContext()).scanWifi(
+                                MainActivity.this::getScanResults).start();
+                    }
+                }
+
                 return;
             }
             if (needProgress) {
@@ -574,10 +621,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             }
             Toast.makeText(this, "Internet connected", Toast.LENGTH_SHORT).show();
         } else {
+            //Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
             //show a dialog and ask for wifi data and try to re-connect
             if (storage.getPassword() != null && storage.getWifiName() != null) {
-                WifiUtils.withContext(getApplicationContext()).scanWifi(
-                        MainActivity.this::getScanResults).start();
+                // wifi is enabled
+                if (!checkInternetConnection(this)) {
+                    WifiUtils.withContext(getApplicationContext()).scanWifi(
+                            this::getScanResults).start();
+                    Log.e("MKWIFI","True");
+                }
+
+
             } else {
                 showWifiSetupDialog();
             }

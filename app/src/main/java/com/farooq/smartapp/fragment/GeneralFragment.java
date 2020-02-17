@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -113,6 +114,8 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
         EditText password = dialog.findViewById(R.id.etPassword);
         TextView cancel = dialog.findViewById(R.id.txt_cancel);
         TextView save = dialog.findViewById(R.id.txt_save);
+        if(storage.getWifiName()!=null)wifiName.setText(storage.getWifiName());
+        if(storage.getPassword()!=null)password.setText(storage.getPassword());
         cancel.setOnClickListener(v -> dialog.dismiss());
         save.setOnClickListener(v -> {
             if (wifiName.getText().toString().length() != 0) {
@@ -120,8 +123,15 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
                     storage.saveWifiName(wifiName.getText().toString());
                     storage.savePassword(password.getText().toString());
                     dialog.dismiss();
-                    WifiUtils.withContext(getActivity().getApplicationContext()).scanWifi(
-                            this::getScanResults).start();
+                    WifiManager wifiManager = (WifiManager) getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                    if (wifiManager != null && !wifiManager.isWifiEnabled()) {
+                        // wifi is enabled
+                        if (storage.getPassword() != null && storage.getWifiName() != null) {
+                            WifiUtils.withContext(getActivity().getApplicationContext()).scanWifi(
+                                   this::getScanResults).start();
+                        }
+                    }
+
                     Toast.makeText(getActivity(), "Wifi info changed successfully!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), "Password can't be less than 6 character!", Toast.LENGTH_SHORT).show();
@@ -143,7 +153,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
 
     private void getScanResults(@NonNull final List<ScanResult> results) {
         for (ScanResult result : results) {
-            if (result.SSID.contains(storage.getWifiName())) {
+            if (result.SSID.equals(storage.getWifiName())) {
                 connectToWifi(result.SSID);
                 break;
             }
@@ -153,7 +163,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener {
 
     private void connectToWifi(String ss) {
         WifiUtils.withContext(getActivity().getApplicationContext())
-                .connectWith(ss.trim(), storage.getPassword())
+                .connectWith(ss, storage.getPassword())
                 .onConnectionResult(this::checkResult)
                 .start();
     }
